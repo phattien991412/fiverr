@@ -20,7 +20,7 @@ const Proposition = () => {
 
   return (
     <div className="container flex justify-center">
-      <div className="w-1/2 pr-40">
+      <div className="w-1/2 ml-5 pr-40">
         <h2 className="text-3xl" style={{ color: "#404145" }}>
           A whole world of freelance talent at your fingertips
         </h2>
@@ -79,8 +79,8 @@ const Proposition = () => {
           </li>
         </ul>
       </div>
-      <div className="w-1/2">
-        <img className="w-full" src="https://picsum.photos/500" alt="" />
+      <div className="w-1/2 pt-10">
+        <img className="w-full" src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_700,dpr_1.0/v1/attachments/generic_asset/asset/089e3bb9352f90802ad07ad9f6a4a450-1599517407052/selling-proposition-still-1400-x1.png" alt="" />
         <Button type="primary" onClick={showModal}>
           Open Modal
         </Button>

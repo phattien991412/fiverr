@@ -1,8 +1,10 @@
 import React from "react";
+import Business from "../../Components/Business";
 import HomeCarousel from "../../Components/Carousel";
 import MarketPlace from "../../Components/MarketPlace";
 import Service from "../../Components/ProfessionalService";
 import Proposition from "../../Components/SellingProposition";
+import Testimonial from "../../Components/Testimonial";
 
 const Home = (props) => {
   return (
@@ -54,7 +56,9 @@ const Home = (props) => {
       <div className="py-24" style={{ backgroundColor: "#f1fdf7" }}>
         <Proposition />
       </div>
-      <MarketPlace/>
+      <MarketPlace />
+      <Business />
+      <Testimonial />
     </>
   );
 };
