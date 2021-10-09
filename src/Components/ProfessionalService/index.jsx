@@ -62,7 +62,7 @@ const Service = () => {
     ]
   };
   return (
-    <div className="container ml-10 mt-20">
+    <div className="container ml-10 my-20">
       <h2 className="text-3xl">Popular professional services</h2>
       <Slider {...settings}>
         <div>

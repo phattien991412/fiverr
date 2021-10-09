@@ -1,5 +1,6 @@
 import React from "react";
 import HomeCarousel from "../../Components/Carousel";
+import MarketPlace from "../../Components/MarketPlace";
 import Service from "../../Components/ProfessionalService";
 import Proposition from "../../Components/SellingProposition";
 
@@ -8,7 +9,7 @@ const Home = (props) => {
     <>
       <HomeCarousel />
 
-      <div style={{ background: "#fafafa" }} >
+      <div style={{ background: "#fafafa" }}>
         <ul className="flex flex-auto justify-center align-middle p-4">
           <span
             className="pt-4 text-base font-semibold"
@@ -50,9 +51,10 @@ const Home = (props) => {
         </ul>
       </div>
       <Service />
-      <div className="container">
+      <div className="py-24" style={{ backgroundColor: "#f1fdf7" }}>
         <Proposition />
       </div>
+      <MarketPlace/>
     </>
   );
 };
