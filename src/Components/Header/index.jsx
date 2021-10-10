@@ -63,16 +63,16 @@ const Header = () => {
           </li>
           <li className="flex">
             <NavLink
-              to="/"
+              to="/signin"
               className="flex items-center px-2 -mb-1 text-white font-semibold text-base "
             >
               Sign In
             </NavLink>
           </li>
           <li className="flex p-2">
-            <button class="joinButton flex items-center px-6 h-8 -mb-1 bg-transparent hover:bg-green-500 text-white text-base font-semibold border border-white hover:border-green-500 rounded">
+            <NavLink to="/signup" class="joinButton flex items-center px-6 h-8 -mb-1 bg-transparent hover:bg-green-500 hover:text-white text-white text-base font-semibold border border-white hover:border-green-500 rounded">
               Join
-            </button>
+            </NavLink>
           </li>
         </ul>
 
