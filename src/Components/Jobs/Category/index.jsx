@@ -46,10 +46,15 @@ const Categories = () => {
                 Lorem ipsum dolor sit amet.
               </NavLink>
             </li>
+
           </ul>
         </div>
         <div className="col-start-3 col-span-4">
           <div className="grid grid-cols-3">
+            <div className="col-span-1 mb-8">
+              <NavLink to="/categories/jobs"><img className="w-full pr-4 rounded" src="https://picsum.photos/200" alt="" />
+              <p className="text-base font-medium text-black hover:text-black">WordPress</p></NavLink>
+            </div>
             <div className="col-span-1 mb-8">
               <NavLink to="/categories/jobs"><img className="w-full pr-4 rounded" src="https://picsum.photos/200" alt="" />
               <p className="text-base font-medium text-black hover:text-black">WordPress</p></NavLink>

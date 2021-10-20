@@ -19,8 +19,6 @@ const Signin = () => {
 
   const onSubmit = (data) => {
     dispatch(SignIn(data));
-
-    console.log(data);
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
