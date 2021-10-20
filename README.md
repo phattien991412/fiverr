@@ -1,10 +1,18 @@
-BC09 - FINAL PROJECT - FIVERR
+<h1>BC09 - FINAL PROJECT - FIVERR</h1>
 
-Packages Install
+<h2>Packages Install</h2>
 
-UI: antd, tailwindcss
-Routing: react-router-dom
-Store: redux, react-redux, redux-thunk
-Form: formik, yup
+<ul>
+  <li>UI: antd, tailwindcss </li>
+  <li>Routing: react-router-dom </li>
+  <li>Store: redux, react-redux, redux-thunk </li>
+  <li>Form: react-hook-form, yup </li>
+  
+</ul>
+
+
+
+
+
 
 
