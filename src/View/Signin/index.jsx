@@ -1,46 +1,36 @@
-import React from "react";
-import { useFormik } from "formik";
-import * as yup from "yup";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
-import {SignIn} from "../../store/action/auth"
+import { NavLink, useHistory } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
-const schema = yup.object().shape({
-  email: yup.string().required("Tên tài khoản bắt buộc nhập "),
-  password: yup.string().required("Mật khẩu bắt buộc nhập")
-});
-const Signin = (props) => {
+import { SignIn } from "../../store/action/auth";
+import { signInUserSchema } from "../../services/AuthService";
+
+const Signin = () => {
   const dispatch = useDispatch();
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: ""
-    },
-    validateOnMount: true,
-    validationSchema: schema
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(signInUserSchema)
   });
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    formik.setTouched({
-      email: true,
-      password: true
-    });
-    if (!formik.isValid) return;
-    dispatch(
-      SignIn(formik.values, () => {
-        props.history.push("/");
-      })
-    );
+
+  const onSubmit = (data) => {
+    dispatch(SignIn(data));
+
+    console.log(data);
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="lg:flex">
         <div className="lg:w-1/2 xl:max-w-screen-sm">
           <div className="py-12 bg-indigo-100 lg:bg-white flex justify-center lg:justify-start lg:px-12">
             <div className="cursor-pointer flex items-center">
               <NavLink to="/">
                 <svg
-                className="ml-12"
+                  className="md:ml-12"
                   width="89"
                   height="27"
                   viewBox="0 0 89 27"
@@ -55,7 +45,6 @@ const Signin = (props) => {
                   </g>
                 </svg>
               </NavLink>
-            
             </div>
           </div>
           <div className="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
@@ -68,18 +57,18 @@ const Signin = (props) => {
             <div className="mt-12">
               <div>
                 <div>
-                  
                   <input
-                    onChange={formik.handleChange}
-                    name="email"
                     className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-                    type="text"
+                    type="email"
                     placeholder="Email"
+                    {...register("email")}
                   />
+                  <span className="text-red-600 text-xs">
+                    {errors.email?.message}
+                  </span>
                 </div>
                 <div className="mt-8">
                   <div className="flex justify-between items-center">
-                    
                     <div>
                       <a
                         className="text-xs font-display font-semibold text-indigo-600 hover:text-indigo-800
@@ -90,26 +79,29 @@ const Signin = (props) => {
                     </div>
                   </div>
                   <input
-                    onChange={formik.handleChange}
-                    name="password"
                     className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
                     type="password"
                     placeholder="Password"
+                    name="password"
+                    {...register("password")}
                   />
+                  <span className="text-red-600 text-xs">
+                    {errors.password?.message}
+                  </span>
                 </div>
                 <div className="mt-10">
                   <button
+                    type="submit"
                     className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
                   font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
                   shadow-lg"
-                    type="submit"
                   >
                     Sign in
                   </button>
                 </div>
               </div>
               <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
-                Don't have an account ?{" "}
+                Don't have an account ? &nbsp;
                 <NavLink
                   to="/signup"
                   className="cursor-pointer text-indigo-600 hover:text-indigo-800"

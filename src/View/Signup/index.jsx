@@ -1,94 +1,46 @@
 import React, { useState } from "react";
-import { useFormik } from "formik";
-import * as yup from "yup";
+import { useHistory } from "react-router";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { DatePicker, Space } from "antd";
+import "react-datepicker/dist/react-datepicker.css";
+import { signUpUserSchema } from "../../services/AuthService";
 
-import axios from "axios";
-import { moment } from "moment";
+import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { signUp } from "../../store/action/auth";
 
-import { NavLink, useHistory } from "react-router-dom";
-const schema = yup.object().shape({
-  first_name: yup.string().required("First name is required"),
-  last_name: yup.string().required("Last name is required"),
-  email: yup.string().required("Email is required").email("Email is invalid"),
-  phone: yup
-    .string()
-    .required("Phone is requied")
-    .matches(/^[0-9]+$/g, "Phone must be number"),
-  password: yup.string().required("Password is required"),
-  certification: yup.string().required("Password is required"),
-  birthday: yup.string().required("Password is required")
-});
 const Signup = () => {
-  let history = useHistory();
-  const formik = useFormik({
-    initialValues: {
-      first_name: "",
-      last_name: "",
-      email: "",
-      phone: "",
-      password: "",
-      certification: [],
-      gender: true,
-      skill: [],
-      type: "ADMIN",
-      birthday: new Date()
-    }
-    // validationSchema: schema,
-    // validateOnMount: true,
+  const dispatch = useDispatch();
+
+  function onChange(date, dateString) {
+    console.log(date, dateString);
+  }
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+    reset
+  } = useForm({
+    resolver: yupResolver(signUpUserSchema)
   });
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    formik.setTouched({
-      taiKhoan: true,
-      email: true,
-      soDt: true,
-      matKhau: true,
-      hoten: true
-    });
-    if (!formik.isValid) return;
-    const newUser = {
-      ...formik.values,
-      birthday: moment(formik.values.birthday, "dd/MM/yyyy")
-    };
 
-    console.log(newUser);
-
-    const formData = new FormData();
-
-    for (let key in newUser) {
-      formData.append(key, newUser[key]);
-    }
-
-    try {
-      const res = await axios({
-        method: "POST",
-        url: "https://fiverr.cybersoft.edu.vn/api/auth/signup",
-        data: formData,
-        headers: {
-          tokenByClass:
-            "Bearer " +
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCAwOSIsIkhldEhhblN0cmluZyI6IjI3LzAxLzIwMjIiLCJIZXRIYW5UaW1lIjoiMTY0MzI0MTYwMDAwMCIsIm5iZiI6MTYxNjM0NjAwMCwiZXhwIjoxNjQzMzg5MjAwfQ.NEQRF8SKORq7R7kYbYCCO9ZZXYxTWlbaTc2wxXWMfiw"
-        }
-      });
-      console.log(res);
-    } catch (err) {
-      console.log(err);
-    }
+  const onSubmit = (data) => {
+    dispatch(signUp(data));
+    console.log(data);
+    reset();
   };
-  const handleChangeDate = (date) => {
-    formik.setFieldValue("birthday", date);
-  };
-  const handleChangeSwitch = (e) => {
-    formik.setFieldValue(e.target.name, e.target.checked);
-  };
+
   return (
-    <form onSubmit={handleSubmit} className="lg:flex">
+    <form onSubmit={handleSubmit(onSubmit)} className="lg:flex">
       <div className="lg:w-1/2 xl:max-w-screen-sm">
         <div className="pt-12 bg-indigo-100 lg:bg-white flex justify-center lg:justify-start lg:px-12">
           <div className="cursor-pointer flex items-center">
             <NavLink to="/">
               <svg
-                className="ml-12"
+                className="mb-7 md:ml-12"
                 width="89"
                 height="27"
                 viewBox="0 0 89 27"
@@ -107,7 +59,7 @@ const Signup = () => {
         </div>
         <div className=" px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
           <h2
-            className="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
+            className=" text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
       xl:text-bold"
           >
             Sign up
@@ -118,61 +70,111 @@ const Signup = () => {
                 <div className="mr-2">
                   <input
                     className="w-full text-lg py-2 border-b  border-gray-300 focus:outline-none focus:border-indigo-500"
-                    type
+                    type="text"
                     placeholder="First name"
+                    {...register("firstName")}
                   />
+
+                  <span className="text-red-600 m-0 p-0 text-xs">
+                    {errors.firstName?.message}
+                  </span>
                 </div>
                 <div>
                   <input
                     className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-                    type
+                    type="text"
                     placeholder="Last name"
+                    {...register("lastName")}
                   />
+                  <span className="text-red-600 m-0 p-0 text-xs">
+                    {errors.lastName?.message}
+                  </span>
                 </div>
               </div>
-              <div className="my-4">
+              <div className="my-2">
                 <input
                   className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-                  type
+                  type="email"
                   placeholder="Email"
+                  {...register("email")}
                 />
+                <span className="text-red-600 m-0 p-0 text-xs">
+                  {errors.email?.message}
+                </span>
               </div>
               <div className="grid grid-cols-2">
-                <div>
+                <div className="mr-2">
                   <input
                     className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
                     type="text"
                     placeholder="Phone number"
+                    {...register("phone")}
                   />
+                  <span className="text-red-600 m-0 p-0 text-xs">
+                    {errors.phone?.message}
+                  </span>
                 </div>
+
                 <div>
-                  <input
-                    onChange={handleChangeDate}
-                    className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-                    type="text"
-                    placeholder="Your birthday"
+                  {/* <Controller
+                    control={control}
+                    {...register("birthdate")}
+                    render={({ field }) => (
+                      <DatePicker
+                        className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                        placeholderText="Select Birthdate"
+                        onChange={(date) => field.onChange(date)}
+                        selected={field.value}
+                      />
+                    )}
+                  /> */}
+                  <Controller
+                    control={control}
+                    {...register("birthdate")}
+                    render={({ field }) => (
+                      <Space className="w-full" direction="vertical">
+                        <DatePicker
+                          onChange={(onChange) => field.onChange(onChange)}
+                          selected={field.value}
+                          placeholderText="Birthdate"
+                          style={{ height: 45 }}
+                          className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                        />
+                      </Space>
+                    )}
                   />
+
+                  <span className="text-red-600 m-0 p-0 text-xs">
+                    {errors.birthdate?.message}
+                  </span>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 my-4">
-                <div>
+              <div className="grid grid-cols-2 my-2">
+                <div className="mr-2">
                   <div className="text-lg font-medium text-gray-700 tracking-wide">
-                    Skill :
-                    <select className="ml-5 text-sm font-semibold border border-black rounded">
-                      <option value="">LOL</option>
-                      <option value="">WEB</option>
-                      <option value="">DESIGN</option>
-                    </select>
+                    <input
+                      className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                      type="text"
+                      placeholder="Skill"
+                      {...register("skill")}
+                    />
+                    <span className="text-red-600 m-0 p-0 text-xs font-normal">
+                      {errors.skill?.message}
+                    </span>
                   </div>
                 </div>
                 <div>
                   <div className="text-lg font-medium text-gray-700 tracking-wide">
-                    Certification :
-                    <select className="ml-5 text-sm font-semibold border border-black rounded">
-                      <option value="">DYB</option>
-                      <option value="">PYNOW</option>
-                    </select>
+                    <input
+                      className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                      type="text"
+                      placeholder="Certification"
+                      {...register("certification")}
+                    />
+                    <span className="text-red-600 m-0 p-0 text-xs font-normal">
+                      {errors.certification?.message}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -181,13 +183,19 @@ const Signup = () => {
                 <div className="flex justify-between items-center"></div>
                 <input
                   className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-                  type
-                  placeholder="Enter your password"
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  {...register("password")}
                 />
+                <span className="text-red-600 m-0 p-0 text-xs">
+                  {errors.password?.message}
+                </span>
               </div>
 
               <div className="mt-10">
                 <button
+                  type="submit"
                   className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
                   font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
                   shadow-lg text-base"

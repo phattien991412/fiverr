@@ -1,22 +1,16 @@
 import React, { useState } from "react";
-import { CheckCircleOutlined } from "@ant-design/icons";
-import { Button, Modal } from "antd";
-import { Player } from "video-react";
-import "video-react/dist/video-react.css";
+import { CheckCircleOutlined, CaretRightOutlined } from "@ant-design/icons";
+
+import "react-responsive-modal/styles.css";
+import { Modal } from "react-responsive-modal";
+import ReactPlayer from "react-player";
+
+
 const Proposition = () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [open, setOpen] = useState(false);
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
+  const onOpenModal = () => setOpen(true);
+  const onCloseModal = () => setOpen(false);
 
   return (
     <div className="container flex justify-center">
@@ -79,18 +73,18 @@ const Proposition = () => {
           </li>
         </ul>
       </div>
-      <div className="w-1/2 pt-10">
-        <img className="w-full" src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_700,dpr_1.0/v1/attachments/generic_asset/asset/089e3bb9352f90802ad07ad9f6a4a450-1599517407052/selling-proposition-still-1400-x1.png" alt="" />
-        <Button type="primary" onClick={showModal}>
-          Open Modal
-        </Button>
-        <Modal visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-          <Player
-            playsInline
-            poster="/assets/poster.png"
-            src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
-          />
-        </Modal>
+      <div className="relative w-1/2 pt-10">
+        <img
+          className="w-full"
+          src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_700,dpr_1.0/v1/attachments/generic_asset/asset/089e3bb9352f90802ad07ad9f6a4a450-1599517407052/selling-proposition-still-1400-x1.png"
+          alt=""
+        />
+        <div className="absolute top-60 left-80">
+          <button  onClick={onOpenModal}><CaretRightOutlined style={{fontSize: 48, color:'#fff', backgroundColor:"#02020287", borderRadius: '50%', padding: 5, paddingLeft: 10}} /></button>
+          <Modal open={open} onClose={onCloseModal} center>
+            <ReactPlayer width="750px" height="400px" url="https://www.youtube.com/watch?v=U4LQlauIbBU&ab_channel=GioMuaDongz" />
+          </Modal>
+        </div>
       </div>
     </div>
   );

@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { Redirect, Route } from "react-router-dom";
+import { TOKEN } from "../../util/config";
 //HOC function component
 const createRoute = (condition) => {
   return class extends Component {
     render() {
-      const { path, Component: RouteComponent, redirectPath } = this.props;
+      const { path, component: RouteComponent, redirectPath, ...restProps } = this.props;
       return (
         <Route
           path={path}
+          {...restProps}
           render={(routeProps) => {
             if (condition()) {
               return (
@@ -24,4 +26,10 @@ const createRoute = (condition) => {
     }
   };
 };
-export const AuthRoute = createRoute(() => !localStorage.getItem("t"));
+export const AuthRoute = createRoute(() => true);
+
+export const PrivateRoute = createRoute(() =>
+  localStorage.getItem(TOKEN)
+);
+
+

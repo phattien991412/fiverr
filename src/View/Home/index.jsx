@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Business from "../../Components/Business";
 import HomeCarousel from "../../Components/Carousel";
+import Header from "../../Components/Header";
+import Footer from "../../Components/Footer";
 import MarketPlace from "../../Components/MarketPlace";
 import Service from "../../Components/ProfessionalService";
 import Proposition from "../../Components/SellingProposition";
 import Testimonial from "../../Components/Testimonial";
+import "./style.module.css";
 
 const Home = (props) => {
   return (
     <>
+      <Header />
       <HomeCarousel />
 
       <div style={{ background: "#fafafa" }}>
@@ -53,12 +57,16 @@ const Home = (props) => {
         </ul>
       </div>
       <Service />
+
       <div className="py-24" style={{ backgroundColor: "#f1fdf7" }}>
         <Proposition />
       </div>
+
       <MarketPlace />
       <Business />
       <Testimonial />
+
+      <Footer />
     </>
   );
 };
