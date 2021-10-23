@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { BackTop } from "antd";
 import { UpCircleOutlined } from "@ant-design/icons";
+import { Menu } from "antd";
+
 import "./style.css";
 
 const Footer = () => {
+  const { SubMenu } = Menu;
+  const rootSubmenuKeys = ["sub1", "sub2", "sub3", "sub4", "sub5"];
+
+  const [openKeys, setOpenKeys] = useState(["sub1"]);
+
+  const onOpenChange = (keys) => {
+    const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+    if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+      setOpenKeys(keys);
+    } else {
+      setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
+    }
+  };
+
   return (
-    <footer className="container mt-10 p-6 dark:bg-coolGray-800 dark:text-coolGray-100">
-      <div className="container grid mx-auto  gap-y-8 sm:grid-cols-3 md:grid-cols-5">
+    <footer className="md:container md:mt-10 p-6 dark:bg-coolGray-800 dark:text-coolGray-100">
+      <div className="hidden mx-8 md:mx-auto md:grid md:grid-cols-5 gap-y-8 ">
         <div className=" space-y-4">
           <h2 className="font-semibold text-base">Categories</h2>
           <div className="text-list dark:text-coolGray-400">
@@ -121,7 +137,7 @@ const Footer = () => {
               </li>
               <li className="mb-4">
                 <a href="#">
-                  Fiverr Elevate <p>Exclusive Benefits</p>{" "}
+                  Fiverr Elevate <p>Exclusive Benefits</p>
                 </a>
               </li>
             </ul>
@@ -166,10 +182,73 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="container ml-20 w-11/12 flex justify-between  px-0 pt-12 text-list border-t border-gray-300 ">
+      {/* Menu footer responsive < 528px */}
+      <Menu
+        className="md:hidden w-full"
+        mode="inline"
+        onOpenChange={onOpenChange}
+      >
+        <SubMenu key="sub1" title={<span className="font-semibold text-base">Categories</span>}>
+          <Menu.Item className="text-gray-500 text-base" key="1">Graphics & Design</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="2">Digital Marketing</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="3">Writing & Translation</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="4">Video & Animation</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="5">Music & Audio</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="6">Programming & Tech</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="7">Data</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="8">Business</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="9">Lifestyle</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="10">Sitemap</Menu.Item>
+        </SubMenu>
+        <SubMenu key="sub2" title={<span className="font-semibold text-base">About</span>}>
+          <Menu.Item className="text-gray-500 text-base" key="11">Careers</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="12">Press & News</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="13">Partnerships</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="14">Privacy Policy</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="15">Terms of Service</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="16">Intellectual Property Claims</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="17">Investor Relations</Menu.Item>
+        </SubMenu>
+        <SubMenu key="sub3" title={<span className="font-semibold text-base">Support</span>}>
+          <Menu.Item className="text-gray-500 text-base" key="18">Help & Support</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="19">Trust & Safety</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="20">Selling on Fiverr</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="21">Buying on Fiverr</Menu.Item>
+        </SubMenu>
+
+        <SubMenu key="sub4" title={<span className="font-semibold text-base">Community</span>}>
+          <Menu.Item className="text-gray-500 text-base" key="22">Events</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="23">Blog</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="24">Forum</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="25">Community Standards</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="26">Podcast</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="27">Affiliates</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="28">Invite a Friend</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="29">Become a Seller</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="30">
+            Fiverr Elevate <p>Exclusive Benefits</p>
+          </Menu.Item>
+        </SubMenu>
+
+        <SubMenu key="sub5" title={<span className="font-semibold text-base">More From Fiverr</span>}>
+          <Menu.Item className="text-gray-500 text-base" key="31">Fiverr Business</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="32">Fiverr Pro</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="33">Fiverr Studios</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="34">Fiverr Logo Maker</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="35">Fiverr Guides</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="36">Get Inspired</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="37">ClearVoice</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="38">AND CO</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="39">Learn</Menu.Item>
+          <Menu.Item className="text-gray-500 text-base" key="40">Working Not Working</Menu.Item>
+        </SubMenu>
+      </Menu>
+      {/* End menu footer */}
+
+      <div className="block md:flex md:flex-wrap md:justify-between  px-0 pt-8 mt-12 text-list border-t border-gray-300 ">
         {/* content-left */}
-        <div className="flex ">
-          <svg
+        <div className="md:flex grid grid-rows-2 align-middle justify-center ">
+          <svg className="ml-16"
             width="91"
             height="27"
             viewBox="0 0 91 27"
@@ -184,16 +263,16 @@ const Footer = () => {
             </g>
           </svg>
 
-          <p className="ml-7 text-gray-400 font-medium">
+          <p className="md:pt-1 ml-4 md:ml-7 text-gray-400 font-medium">
             @ Fiverr International Ltd. 2021
           </p>
         </div>
-        {/* content-right */}
 
-        <div className="flex ">
+        {/* content-right */}
+        <div className="flex flex-wrap md:flex-nowrap justify-center ">
           {/* Logo */}
           <div>
-            <ul className="flex ">
+            <ul className="flex flex-wrap md:flex-nowrap ">
               <li className="mx-4 logoConnect">
                 <svg
                   fill="#7a7d85"
@@ -281,7 +360,6 @@ const Footer = () => {
               </li>
               <li className="mx-4">
                 <svg
-               
                   fill="#7a7d85"
                   width="32"
                   height="32"
@@ -304,7 +382,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <BackTop>
+      <BackTop className="hidden md:block">
         <UpCircleOutlined className="relative bottom-24 text-5xl font-normal" />
       </BackTop>
     </footer>

@@ -1,16 +1,18 @@
-import { Card, Image } from "antd";
+import { Card, Image, Popover } from "antd";
 import React from "react";
-import {
-  HeartTwoTone,
-  EllipsisOutlined,
-  SettingOutlined
-} from "@ant-design/icons";
+import { HeartFilled } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 
 import notFoundImage from "../../../assets/img/notFoundImg.png";
 
 const ItemJobs = (props) => {
   const { _id, name, image } = props.item;
+
+  const content = (
+    <div>
+      <p>Save to My first list</p>
+    </div>
+  );
 
   return (
     <NavLink to={`/detail/${_id}`}>
@@ -25,9 +27,11 @@ const ItemJobs = (props) => {
           />
         }
         actions={[
-          <HeartTwoTone twoToneColor="#eb2f96" key="like" />,
+          <Popover style={{ backgroundColor: "#000" }} content={content}>
+            <HeartFilled style={{ color: "#b5b6ba" }} />
+          </Popover>,
 
-          <EllipsisOutlined key="ellipsis" />
+          <p>Starting at $10</p>
         ]}
       >
         <p>{name}</p>

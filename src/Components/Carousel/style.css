@@ -1,11 +1,11 @@
-.slick-dots-bottom {
+/* .slick-dots-bottom {
   margin: 0% !important;
   padding: 0% !important;
 }
 
 .slick-dots-bottom li {
   display: none !important;
-}
+} */
 
 .anticon-star {
   font-size: 13px !important;
@@ -51,10 +51,25 @@
   height: 650px;
 }
 
-@media screen and (max-width: 768px) {
-  .hero {
-    background-color: #023a15;
-    height: 650px;
-  }
+/* Responsive */
+
+@media screen and (max-width: 1200px) {
 }
 
+@media screen and (max-width: 996px) {
+}
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 576px) {
+  .hero-andrea,
+  .hero-gabrielle,
+  .hero-moon,
+  .hero-ritika,
+  .hero-zach {
+    background-color: #023a15;
+    height: 370px;
+    background-image: none;
+  }
+}

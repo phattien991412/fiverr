@@ -1,4 +1,5 @@
  .slick-next {
+    
     background: initial !important;
     right: -22px !important;
     width: 48px !important;
@@ -10,6 +11,7 @@
 }
 
 .slick-prev {
+    
     height: 43px !important;
     z-index: 10 !important;
 }

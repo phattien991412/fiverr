@@ -76,12 +76,15 @@ export const fetchMe = (callback) => {
   return async (dispatch) => {
     try {
       const res = await authSerivce.fetchMe();
-      dispatch(createAction(actionType.SET_SIGN_IN, res.data));
-      if (callback) {
-        callback();
-      }
+      dispatch(createAction(actionType.SET_ME, res.data));
     } catch (err) {
       console.log(err);
+      if (err.response.status === 401) {
+        localStorage.removeItem(TOKEN);
+        if (callback) {
+          await callback();
+        }
+      }
     }
   };
 };

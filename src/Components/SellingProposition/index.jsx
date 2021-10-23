@@ -13,8 +13,8 @@ const Proposition = () => {
   const onCloseModal = () => setOpen(false);
 
   return (
-    <div className="container flex justify-center">
-      <div className="w-1/2 ml-5 pr-40">
+    <div className="md:container md:flex md:justify-center">
+      <div className="md:w-1/2 md:ml-5 md:pr-40 md:mx-0 mx-8">
         <h2 className="text-3xl" style={{ color: "#404145" }}>
           A whole world of freelance talent at your fingertips
         </h2>
@@ -73,13 +73,13 @@ const Proposition = () => {
           </li>
         </ul>
       </div>
-      <div className="relative w-1/2 pt-10">
+      <div className="relative md:w-1/2 pt-10">
         <img
           className="w-full"
           src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_700,dpr_1.0/v1/attachments/generic_asset/asset/089e3bb9352f90802ad07ad9f6a4a450-1599517407052/selling-proposition-still-1400-x1.png"
           alt=""
         />
-        <div className="absolute top-60 left-80">
+        <div className="absolute top-36 left-44 md:top-60 md:left-80">
           <button  onClick={onOpenModal}><CaretRightOutlined style={{fontSize: 48, color:'#fff', backgroundColor:"#02020287", borderRadius: '50%', padding: 5, paddingLeft: 10}} /></button>
           <Modal open={open} onClose={onCloseModal} center>
             <ReactPlayer width="750px" height="400px" url="https://www.youtube.com/watch?v=U4LQlauIbBU&ab_channel=GioMuaDongz" />

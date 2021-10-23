@@ -3,29 +3,28 @@ import { NavLink } from "react-router-dom";
 import Slider from "react-slick";
 import "./style.css";
 
-function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: "block" }}
-      onClick={onClick}
-    />
-  );
-}
-
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: "block" }}
-      onClick={onClick}
-    />
-  );
-}
-
 const Service = () => {
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block" }}
+        onClick={onClick}
+      />
+    );
+  }
+
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block" }}
+        onClick={onClick}
+      />
+    );
+  }
   var settings = {
     dots: true,
     infinite: true,
@@ -63,8 +62,8 @@ const Service = () => {
     ]
   };
   return (
-    <div className="container  my-20">
-      <h2 className="text-3xl ml-5">Popular professional services</h2>
+    <div className="md:container md:mx-0 mx-5 my-0  md:my-20">
+      <h2 className="text-4xl md:text-3xl ml-5">Popular professional services</h2>
       <Slider {...settings}>
         <NavLink to="/category" className="rounded relative">
           <img

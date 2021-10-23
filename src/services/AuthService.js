@@ -36,7 +36,7 @@ export class AuthService extends baseService {
   };
 
   fetchMe = () => {
-    return this.post(`api/auth/info`);
+    return this.get(`api/users`);
   };
 }
 
