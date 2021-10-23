@@ -14,11 +14,11 @@ export class JobsService extends baseService {
   };
 
   fetchListTypeJobs = () => {
-    return this.get(`/api/jobs/by-type?type=${id}`)
+    return this.get(`/api/jobs/by-type?type`)
   }
 
   fetchSubTypeJobs = () => {
-    return this.get(`/api/type-jobs/${id}`)
+    return this.get(`/api/type-jobs`)
   }
 }
 
