@@ -56,10 +56,26 @@
 @media screen and (max-width: 1200px) {
 }
 
-@media screen and (max-width: 996px) {
+@media screen and (max-width: 1024px) {
+  .hero-andrea,
+  .hero-gabrielle,
+  .hero-moon,
+  .hero-ritika,
+  .hero-zach {
+    height: 620px;
+  }
 }
 
 @media screen and (max-width: 768px) {
+  .hero-andrea,
+  .hero-gabrielle,
+  .hero-moon,
+  .hero-ritika,
+  .hero-zach {
+    background-color: #023a15;
+    height: 400px;
+    background-image: none;
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -68,8 +84,6 @@
   .hero-moon,
   .hero-ritika,
   .hero-zach {
-    background-color: #023a15;
     height: 370px;
-    background-image: none;
   }
 }

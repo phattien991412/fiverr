@@ -1,6 +1,5 @@
 import { baseService } from "./baseService";
 import * as yup from "yup";
-import { TOKEN } from "../util/config";
 
 // Validation form
 export const signUpUserSchema = yup.object().shape({
@@ -36,7 +35,7 @@ export class AuthService extends baseService {
   };
 
   fetchMe = () => {
-    return this.get(`api/users`);
+    return this.get(`api/users/${id}`);
   };
 }
 

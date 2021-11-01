@@ -1,5 +1,11 @@
-.joinButton {
-    transition: .5s;
+.ant-collapse-arrow {
+    display: none !important;
+}
+
+.ant-collapse-content-box {
+    background-color: #28a745 !important;
+    padding: 0 !important;
+    border-radius: 4px;
 }
 /* 
 @media screen and (max-width: 1200px) {

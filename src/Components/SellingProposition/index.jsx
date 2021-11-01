@@ -4,7 +4,8 @@ import { CheckCircleOutlined, CaretRightOutlined } from "@ant-design/icons";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
 import ReactPlayer from "react-player";
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "./style.css";
 
 const Proposition = () => {
   const [open, setOpen] = useState(false);
@@ -13,9 +14,9 @@ const Proposition = () => {
   const onCloseModal = () => setOpen(false);
 
   return (
-    <div className="md:container md:flex md:justify-center">
-      <div className="md:w-1/2 md:ml-5 md:pr-40 md:mx-0 mx-8">
-        <h2 className="text-3xl" style={{ color: "#404145" }}>
+    <div className="xl:container lg:flex lg:justify-center">
+      <div className="lg:pr-16 lg:mx-8 lg:w-1/2 xl:w-1/2 xl:ml-5 xl:pr-40 xl:mx-0 mx-8">
+        <h2 className="text-3xl lg:text-4xl" style={{ color: "#404145" }}>
           A whole world of freelance talent at your fingertips
         </h2>
         <ul>
@@ -73,16 +74,32 @@ const Proposition = () => {
           </li>
         </ul>
       </div>
-      <div className="relative md:w-1/2 pt-10">
-        <img
+      <div className="relative pt-10 lg:mt-32 lg:mr-8 lg:w-1/2 xl:w-1/2 xl:mt-0">
+        <LazyLoadImage
           className="w-full"
           src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_700,dpr_1.0/v1/attachments/generic_asset/asset/089e3bb9352f90802ad07ad9f6a4a450-1599517407052/selling-proposition-still-1400-x1.png"
           alt=""
         />
-        <div className="absolute top-36 left-44 md:top-60 md:left-80">
-          <button  onClick={onOpenModal}><CaretRightOutlined style={{fontSize: 48, color:'#fff', backgroundColor:"#02020287", borderRadius: '50%', padding: 5, paddingLeft: 10}} /></button>
+        <div className="absolute top-36 left-44 md:top-64 md:left-96 lg:top-40 lg:left-52 xl:top-60 xl:left-80">
+          <button onClick={onOpenModal}>
+            <CaretRightOutlined
+              style={{
+                fontSize: 48,
+                color: "#fff",
+                backgroundColor: "#02020287",
+                borderRadius: "50%",
+                padding: 5,
+                paddingLeft: 10
+              }}
+            />
+          </button>
           <Modal open={open} onClose={onCloseModal} center>
-            <ReactPlayer width="750px" height="400px" url="https://www.youtube.com/watch?v=U4LQlauIbBU&ab_channel=GioMuaDongz" />
+            <ReactPlayer
+              className="react-player"
+              width="750px"
+              height="400px"
+              url="https://www.youtube.com/watch?v=U4LQlauIbBU&ab_channel=GioMuaDongz"
+            />
           </Modal>
         </div>
       </div>

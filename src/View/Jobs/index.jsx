@@ -1,12 +1,12 @@
 import React from 'react';
-import HeaderJobs from '../../Components/Jobs/HeaderJobs';
+import Header from '../../Components/Header';
 import ListJobs from '../../Components/Jobs/ListJobs';
 import Footer from '../../Components/Footer'
 
 const Jobs = () => {
     return (
         <>
-            <HeaderJobs/>
+            <Header/>
             <ListJobs/>
             <Footer/>
         </>

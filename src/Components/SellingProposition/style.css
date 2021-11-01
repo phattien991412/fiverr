@@ -1,0 +1,21 @@
+
+.react-responsive-modal-modal {
+    padding: 0 !important;
+}
+
+@media screen and (max-width: 768px) {
+    .react-responsive-modal-container {
+        width: 700px !important;
+    }
+    .react-player {
+        width: 700px !important;
+    }
+}
+@media screen and (max-width: 576px) {
+    .react-responsive-modal-container {
+        width: 400px !important;
+    }
+    .react-player {
+        width: 400px !important;
+    }
+}

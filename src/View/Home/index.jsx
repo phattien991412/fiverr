@@ -7,7 +7,6 @@ import MarketPlace from "../../Components/MarketPlace";
 import Service from "../../Components/ProfessionalService";
 import Proposition from "../../Components/SellingProposition";
 import Testimonial from "../../Components/Testimonial";
-import "./style.module.css";
 
 const Home = (props) => {
   return (
@@ -16,39 +15,39 @@ const Home = (props) => {
       <HomeCarousel />
 
       <div style={{ background: "#fafafa" }}>
-        <ul className="grid grid-cols-4 md:flex md:flex-auto md:justify-center md:align-middle p-4">
+        <ul className="grid grid-cols-4 md:flex md:flex-auto md:justify-center md:align-middle lg:flex lg:flex-auto lg:justify-center lg:align-middle p-4">
           <span
-            className="pt-4 text-base font-semibold hidden md:block"
+            className="pt-4 text-base font-semibold hidden lg:block"
             style={{ color: "#b5b6ba" }}
           >
             Trusted by :
           </span>
 
-          <li className="py-4 md:py-0 px-10">
+          <li className="px-2 md:px-6 pt-2 md:pt-0 lg:pt-0 lg:px-10">
             <img
               src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/facebook.31d5f92.png"
               alt="facebook"
             />
           </li>
-          <li className="py-4 md:py-0 px-10">
+          <li className="px-2 md:px-6 lg:px-10">
             <img
               src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/google.517da09.png"
               alt="google"
             />
           </li>
-          <li className="py-4 md:py-0 px-10">
+          <li className="px-2 md:px-6 lg:px-10">
             <img
               src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/netflix.e3ad953.png"
               alt="netflix"
             />
           </li>
-          <li className="py-4 md:py-0 px-10">
+          <li className="px-2 md:px-6 lg:px-10">
             <img
               src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/pandg.8b7310b.png"
               alt="p&g"
             />
           </li>
-          <li className="hidden md:block py-4 md:py-0 px-10">
+          <li className="hidden md:block px-2 md:px-6 lg:px-10">
             <img
               src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/paypal.ec56157.png"
               alt="paypal"
@@ -58,7 +57,10 @@ const Home = (props) => {
       </div>
       <Service />
 
-      <div className="py-24" style={{ backgroundColor: "#f1fdf7" }}>
+      <div
+        className="mt-10 py-20 lg:py-24"
+        style={{ backgroundColor: "#f1fdf7" }}
+      >
         <Proposition />
       </div>
 

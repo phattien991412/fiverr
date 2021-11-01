@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { TOKEN } from "./util/config";
-import { fetchMe } from "./store/action/auth";
+import { fetchMe } from "./store/action/user";
 import { AuthRoute, PrivateRoute } from "./HOCs/Routes";
 
 import Home from "./View/Home";

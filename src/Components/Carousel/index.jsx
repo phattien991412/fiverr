@@ -39,17 +39,15 @@ const HomeCarousel = () => {
         }
       },
       {
-        breakpoint: 600,
+        breakpoint: 768,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          initialSlide: 1,
+          slidesToShow: 0,
           autoplay: false,
           fade: false
         }
       },
       {
-        breakpoint: 480,
+        breakpoint: 640,
         settings: {
           slidesToShow: 0,
           autoplay: false,
@@ -64,8 +62,8 @@ const HomeCarousel = () => {
       <Slider {...settings}>
         <div className="relative">
           <div className="hero hero-andrea"></div>
-          <div className="hidden md:block absolute right-24 bottom-8">
-            <p className="text-sm md:text-lg text-white">
+          <div className="hidden lg:block absolute right-24 bottom-8">
+            <p className="text-lg text-white">
               Andrea, <span className="font-semibold">Fashion Designer</span>
             </p>
           </div>
@@ -73,7 +71,7 @@ const HomeCarousel = () => {
 
         <div className="relative">
           <div className="hero hero-moon"></div>
-          <div className="absolute right-24 bottom-8 hidden md:block">
+          <div className="absolute right-24 bottom-8 hidden lg:block">
             <Rate disabled defaultValue={5} className="text-xs" />
             <p className="text-lg text-white">
               Moon, <span className="font-semibold">Marketing Experts</span>
@@ -83,7 +81,7 @@ const HomeCarousel = () => {
 
         <div className="relative">
           <div className="hero hero-ritika"></div>
-          <div className="absolute right-24 bottom-8 hidden md:block">
+          <div className="absolute right-24 bottom-8 hidden lg:block">
             <p className="text-lg text-white">
               Ritika,
               <span className="font-semibold"> Shoemaker and Designer</span>
@@ -93,7 +91,7 @@ const HomeCarousel = () => {
 
         <div className="relative">
           <div className="hero hero-zach"></div>
-          <div className="absolute right-24 bottom-8 hidden md:block">
+          <div className="absolute right-24 bottom-8 hidden lg:block">
             <p className="text-lg text-white">
               Zach, <span className="font-semibold">Bar Owner</span>
             </p>
@@ -102,7 +100,7 @@ const HomeCarousel = () => {
 
         <div className="relative">
           <div className="hero hero-gabrielle"></div>
-          <div className="absolute right-24 bottom-8 hidden md:block">
+          <div className="absolute right-24 bottom-8 hidden lg:block">
             <Rate disabled defaultValue={5} className="text-xs" />
             <p className="text-lg text-white">
               Gabrielle, <span className="font-semibold">Video Editor</span>
@@ -111,41 +109,41 @@ const HomeCarousel = () => {
         </div>
       </Slider>
 
-      <div className="grid grid-cols-2   text-white absolute top-24 left-8  md:top-1/4 md:left-24 -translate-x-1/2 translate-y-1/2">
-        <div className="col-span-2 md:col-span-1">
-          <h2 className="col-span-2 md:col-span-1  text-white text-4xl md:text-5xl">
-            Find the perfect <i>freelance</i> services for your business
+      <div className="grid grid-cols-2 text-white absolute top-24 left-8 md:left-16 md:pr-8 lg:top-48 lg:left-10  xl:top-36 xl:left-24 -translate-x-1/2 translate-y-1/2">
+        <div className="col-span-2 lg:w-2/3 xl:w-full xl:col-span-1">
+          <h2 className="col-span-2  text-white text-4xl md:pb-4 lg:text-5xl xl:col-span-1 ">
+            Find the perfect <i className="font-serif">freelance</i> services for your business
           </h2>
-          <div className="col-span-2 md:col-span-1 relative mb-4 pr-8 md:pr-0">
+          <div className="col-span-2 lg:col-span-1 relative mb-4 pr-8 lg:pr-0">
             <SearchOutlined
               className="text-xl text-black absolute left-3 top-4 z-20 "
               style={{ color: "#9ca3af" }}
             />
 
             <input
-              className="pl-11 mb-4 md:mb-0 h-12 w-full md:w-9/12 rounded md:rounded-tr-none md:rounded-br-none md:rounded-tl md:rounded-bl outline-none text-black"
+              className="pl-11 mb-4 lg:mb-0 h-12 w-full lg:w-9/12 rounded lg:rounded-tr-none lg:rounded-br-none lg:rounded-tl lg:rounded-bl outline-none text-black"
               placeholder="Try &#34;buiding mobile app&#34;"
               type="text"
             />
-            <button className="bg-green-500 text-white h-12 px-6 w-full md:w-1/6 rounded md:rounded-tl-none md:rounded-bl-none md:rounded-tr md:rounded-br">
+            <button className="bg-green-500 text-white h-12 px-6 w-full lg:w-1/6 rounded lg:rounded-tl-none lg:rounded-bl-none lg:rounded-tr lg:rounded-br">
               Search
             </button>
           </div>
         </div>
-        <div className="hidden md:block col-start-1">
+        <div className="col-start-1 hidden lg:block lg:col-span-2 ">
           <ul className="flex">
             <span className="font-semibold">Popular: </span>
-            <li className=" mx-4 px-2 font-semibold border-2 rounded-xl hover:bg-white hover:text-black cursor-pointer ">
-              Website Design
+            <li className=" mx-2">
+              <p className="font-semibold border-2 rounded-xl hover:bg-white hover:text-black cursor-pointer lg:px-3 ">Website Design</p>
             </li>
-            <li className=" mx-4 px-2 font-semibold border-2 rounded-xl hover:bg-white hover:text-black cursor-pointer ">
-              WordPress
+            <li className=" mx-2">
+              <p className="font-semibold border-2 rounded-xl hover:bg-white hover:text-black cursor-pointer lg:px-3 ">WordPress</p>
             </li>
-            <li className=" mx-4 px-2 font-semibold border-2 rounded-xl hover:bg-white hover:text-black cursor-pointer ">
-              Logo Design
+            <li className=" mx-2">
+              <p className="font-semibold border-2 rounded-xl hover:bg-white hover:text-black cursor-pointer lg:px-3 ">Logo Design</p>
             </li>
-            <li className=" mx-4 px-2 font-semibold border-2 rounded-xl hover:bg-white hover:text-black cursor-pointer ">
-              Dropshipping
+            <li className=" mx-2">
+              <p className="font-semibold border-2 rounded-xl hover:bg-white hover:text-black cursor-pointer lg:px-3 ">Dropshipping</p>
             </li>
           </ul>
         </div>

@@ -17,7 +17,7 @@ const ItemJobs = (props) => {
   return (
     <NavLink to={`/detail/${_id}`}>
       <Card
-        style={{ width: 300, marginBottom: 36 }}
+      className="w-full xl:w-72 mb-9"
         cover={
           <Image
             placeholder={true}

@@ -1,8 +1,10 @@
 import React from "react";
 import HeaderJobs from "../../Components/Jobs/HeaderJobs";
 import Footer from "../../Components/Footer";
+import { useSelector } from "react-redux";
 
 const UserInfo = () => {
+  const me = useSelector((state) => state.user.me);
   return (
     <>
       <HeaderJobs />
@@ -14,13 +16,13 @@ const UserInfo = () => {
               src="https://avatars.githubusercontent.com/u/67946056?v=4"
               alt
             />
-            <div className="text-center mt-2 text-3xl font-medium">
-              Ajo Alex
+            <div className="text-center mt-2 text-xl font-medium">
+              {me?.name}
             </div>
             <div className="text-center mt-2 font-light text-sm">
-              @devpenzil
+              {me?.email}
             </div>
-            <div className="text-center font-normal text-lg">Kerala</div>
+            <div className="text-center font-light text-sm">{me?.phone}</div>
             <div className="px-6 text-center mt-2 font-light text-sm">
               <p>
                 Front end Developer, avid reader. Love to take a long walk, swim
@@ -78,6 +80,7 @@ const UserInfo = () => {
               <h4>Description</h4>
               <p>Edit Description</p>
             </div>
+
             <hr className="mt-8 w-4/5 text-center mx-auto" />
           </div>
         </div>

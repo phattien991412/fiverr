@@ -6,6 +6,7 @@ import { authSerivce } from "../../services/AuthService";
 import { history } from "../../App";
 import swal from "sweetalert";
 import Swal from "sweetalert2";
+import { userSerivce } from "../../services/UserService";
 
 export const SignIn = (data, callback) => {
   return async (dispatch) => {
@@ -59,8 +60,21 @@ export const signUp = (data, callback) => {
   return async (dispatch) => {
     try {
       const res = await authSerivce.signUp(data);
-      dispatch(actionType.SET_SIGN_UP, true);
-      history.push("/signin");
+      setTimeout(() => {
+        dispatch(createAction(actionType.SET_SIGN_UP, true));
+      }, 400);
+
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Sign up success",
+        showConfirmButton: false,
+        timer: 1200
+      });
+
+      setTimeout(() => {
+        history.goBack();
+      }, 1200);
       console.log("signup", res);
       if (callback) {
         callback();
@@ -72,19 +86,4 @@ export const signUp = (data, callback) => {
   };
 };
 
-export const fetchMe = (callback) => {
-  return async (dispatch) => {
-    try {
-      const res = await authSerivce.fetchMe();
-      dispatch(createAction(actionType.SET_ME, res.data));
-    } catch (err) {
-      console.log(err);
-      if (err.response.status === 401) {
-        localStorage.removeItem(TOKEN);
-        if (callback) {
-          await callback();
-        }
-      }
-    }
-  };
-};
+

@@ -1,12 +1,12 @@
 import React from "react";
-import HeaderJobs from "../../Components/Jobs/HeaderJobs";
+import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 import JobDetail from "../../Components/Jobs/JobDetail";
 
 const Detail = () => {
   return (
     <>
-      <HeaderJobs />
+      <Header/>
       <JobDetail />
 
       <Footer />

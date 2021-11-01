@@ -1,13 +1,14 @@
 import React from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Business = () => {
   return (
     <div style={{ backgroundColor: "#0d084d" }}>
-      <div className="md:container md:mx-0 mx-8">
-        <div className="block md:flex">
-            {/* Content left */}
-          <div className="md:w-1/2">
-            <div className="pt-10 md:mt-24 md:mb-10">
+      <div className="xl:container xl:mx-0 mx-8">
+        <div className="block lg:flex">
+          {/* Content left */}
+          <div className="lg:mr-4 xl:w-1/2">
+            <div className="pt-10 lg:mt-10 xl:mt-24 xl:mb-10">
               <svg
                 width="219"
                 height="27"
@@ -28,26 +29,50 @@ const Business = () => {
                   <path d="M142.7,0c-0.6,0-1.1,0.2-1.6,0.7c-0.4,0.4-0.7,1-0.7,1.6c0,0.6,0.2,1.1,0.7,1.6c0.5,0.4,1,0.7,1.6,0.7 c0.6,0,1.1-0.2,1.6-0.7c0.4-0.5,0.7-1,0.7-1.6c0-0.3-0.1-0.6-0.2-0.9s-0.3-0.5-0.5-0.8c-0.2-0.2-0.5-0.4-0.7-0.5 C143.4,0.1,143.1,0,142.7,0z"></path>
                   <path d="M218.3,24.4L218.3,24.4c0,0.6-0.2,1.2-0.7,1.6c-0.4,0.4-1,0.7-1.6,0.7c-0.6,0-1.2-0.2-1.6-0.7 c-0.4-0.4-0.7-1-0.7-1.6v0c0-0.6,0.2-1.2,0.7-1.6c0.4-0.4,1-0.7,1.6-0.7c0.6,0,1.2,0.2,1.6,0.7C218.1,23.2,218.3,23.8,218.3,24.4z"></path>
                 </g>
-                <span style={{background: '#584aff'}} className="p-2 text-white">New</span>
+                <span
+                  style={{ background: "#584aff" }}
+                  className="p-2 text-white"
+                >
+                  New
+                </span>
               </svg>
-              
             </div>
 
             <div className="text-white">
-            <h2 className="text-white text-3xl md:pr-72">A business solution designed for <i>teams</i></h2>
-            <p className="text-lg md:pr-60">Upgrade to a curated experience packed with tools and benefits, dedicated to businesses</p>
-            <ul className="md:pr-52">
-                <li className="text-base">Connect to freelancers with proven business experience</li>
-                <li className="text-base my-10">Get matched with the perfect talent by a customer success manager</li>
-                <li className="text-base">Manage teamwork and boost productivity with one powerful workspace</li>
-            </ul>
+              <h2 className="text-white text-3xl xl:pr-72 pt-6 xl:pt-0">
+                A business solution designed for <i>teams</i>
+              </h2>
+              <p className="text-lg xl:pr-60">
+                Upgrade to a curated experience packed with tools and benefits,
+                dedicated to businesses
+              </p>
+              <ul className="xl:pr-40">
+                <li className="text-lg">
+                  Connect to freelancers with proven business experience
+                </li>
+                <li className="text-lg my-4">
+                  Get matched with the perfect talent by a customer success
+                  manager
+                </li>
+                <li className="text-lg">
+                  Manage teamwork and boost productivity with one powerful
+                  workspace
+                </li>
+              </ul>
             </div>
-            <button className="bg-green-500 text-white text-base font-semibold mt-10 mb-20 px-4 py-2 rounded">Expolore Fiverr Business</button>
+            <button className="bg-green-500 text-white text-base font-semibold mt-10 mb-20 px-4 py-2 rounded">
+              Expolore Fiverr Business
+            </button>
           </div>
 
-            {/* Content right */}
-          <div className="md:w-1/2 md:mt-24">
-              <img className="w-full" src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_870,dpr_1.0/v1/attachments/generic_asset/asset/d9c17ceebda44764b591a8074a898e63-1599597624757/business-desktop-870-x1.png" alt="" />
+          {/* Content right */}
+          <div className="lg:mt-20 xl:w-1/2 xl:mt-36">
+            <LazyLoadImage
+              effect="opacity"
+              className="w-full"
+              src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_870,dpr_1.0/v1/attachments/generic_asset/asset/d9c17ceebda44764b591a8074a898e63-1599597624757/business-desktop-870-x1.png"
+              alt="business"
+            />
           </div>
         </div>
       </div>

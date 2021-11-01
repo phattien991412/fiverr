@@ -38,14 +38,13 @@ const Service = () => {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true
+          slidesToShow: 5,
+          slidesToScroll: 5,
+          initialSlide: 5
         }
       },
       {
-        breakpoint: 600,
+        breakpoint: 768,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -53,7 +52,7 @@ const Service = () => {
         }
       },
       {
-        breakpoint: 480,
+        breakpoint: 640,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1
@@ -62,12 +61,14 @@ const Service = () => {
     ]
   };
   return (
-    <div className="md:container md:mx-0 mx-5 my-0  md:my-20">
-      <h2 className="text-4xl md:text-3xl ml-5">Popular professional services</h2>
+    <div className="xl:container xl:mx-0 mx-5 my-0  xl:my-20">
+      <h2 className="text-4xl py-2 xl:py-0 xl:text-3xl ml-4">
+        Popular professional services
+      </h2>
       <Slider {...settings}>
         <NavLink to="/category" className="rounded relative">
           <img
-            className="px-4 rounded w-full h-full "
+            className="px-4 rounded w-full h-full"
             src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_550,dpr_1.0/v1/attachments/generic_asset/asset/055f758c1f5b3a1ab38c047dce553860-1598561741678/logo-design-2x.png"
             alt="photo"
           />
