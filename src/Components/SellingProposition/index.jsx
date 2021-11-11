@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { CheckCircleOutlined, CaretRightOutlined } from "@ant-design/icons";
 
-import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
 import ReactPlayer from "react-player";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-responsive-modal/styles.css";
 import "./style.css";
+import Video from "../../assets/video/fiverr-video.mp4";
 
 const Proposition = () => {
   const [open, setOpen] = useState(false);
@@ -80,7 +81,7 @@ const Proposition = () => {
           src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_700,dpr_1.0/v1/attachments/generic_asset/asset/089e3bb9352f90802ad07ad9f6a4a450-1599517407052/selling-proposition-still-1400-x1.png"
           alt=""
         />
-        <div className="absolute top-36 left-44 md:top-64 md:left-96 lg:top-40 lg:left-52 xl:top-60 xl:left-80">
+        <div className="absolute top-36 left-44 md:top-64 md:left-96 lg:top-40 lg:left-52 xl:top-56 xl:left-80">
           <button onClick={onOpenModal}>
             <CaretRightOutlined
               style={{
@@ -93,12 +94,14 @@ const Proposition = () => {
               }}
             />
           </button>
-          <Modal open={open} onClose={onCloseModal} center>
+          <Modal open={open} onClose={onCloseModal} center={true}>
             <ReactPlayer
+              playing={true}
+              controls={true}
+              url={Video}
               className="react-player"
-              width="750px"
-              height="400px"
-              url="https://www.youtube.com/watch?v=U4LQlauIbBU&ab_channel=GioMuaDongz"
+              width="800px"
+              height="450px"
             />
           </Modal>
         </div>

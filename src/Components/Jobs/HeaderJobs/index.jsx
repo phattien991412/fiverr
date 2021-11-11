@@ -1,52 +1,50 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import "./style.css";
+import { useHistory, NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../../store/action/auth";
+import { Collapse, Menu, Dropdown, Space } from "antd";
+import { UserOutlined, CloseOutlined } from "@ant-design/icons";
 import { fetchTitleJobs } from "../../../store/action/jobs";
-import { Collapse } from "antd";
-import { UserOutlined } from "@ant-design/icons";
-import './style.css'
-
-const HeaderJobs = () => {
-  const me = useSelector((state) => state.user.me);
+const Header = () => {
+  const { Panel } = Collapse;
   const dispatch = useDispatch();
   const history = useHistory();
+  const me = useSelector((state) => state.user.me);
   const title = useSelector((state) => state.jobs.titleJobs);
-
-  const { Panel } = Collapse;
-
   useEffect(() => {
     dispatch(fetchTitleJobs());
-  }, []);
-
-  const path = history.location.pathname === "/category";
+  }, [dispatch]);
 
   const handleSignOut = () => {
     dispatch(
       signOut(() => {
-        if (
-          history.location.pathname === "/me" ||
-          history.location.pathname === "/category"
-        ) {
+        if (history.location.pathname === "/me") {
           history.push("/");
-        } else {
-          history.push("/category");
         }
       })
     );
   };
+
+  const [sideBar, setSideBar] = useState(false);
+
+  const handleSideBar = () => setSideBar(!sideBar);
+
   return (
-    <header className="header pt-4 bg-white  ">
-      <div className="nav md:container lg:container grid grid-cols-3 lg:flex lg:justify-between h-16 mx-auto">
-        <div className="lg:hidden col-span-3 grid grid-cols-3">
-          <p className="p-4 col-span-1">
+    <header className="xl:p-4 xl:pb-0">
+      <div className="grid grid-cols-3 mx-auto h-16 border-b md:border-0  md:px-0 md:container xl:pl-20  xl:flex xl:justify-between  ">
+        {/* responsive header */}
+        <div className="col-span-3 relative grid grid-cols-3 z-0 xl:hidden  md:grid-cols-8 ">
+          <p
+            onClick={handleSideBar}
+            className="pl-6 pt-5 col-span-1 md:col-start-1 md:pl-16 md:pt-7 lg:pt-5"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              className="w-6 h-6 z-20"
+              className="w-6 h-6 z-20 md:text-black lg:text-black"
             >
               <path
                 strokeLinecap="round"
@@ -57,139 +55,185 @@ const HeaderJobs = () => {
             </svg>
           </p>
 
-          {path ? (
-            <NavLink
-              to="/"
-              aria-label="Back to homepage"
-              className="sm:flex sm:items-center pt-3 pl-6 col-start-2 justify-center"
+          {/* SideBar */}
+          <div
+            className={
+              sideBar
+                ? "w-full left-0   z-50  fixed transition duration-400 ease-linear "
+                : "-left-full   z-50 fixed transition duration-400 ease-linear "
+            }
+          >
+            <div
+              onClick={handleSideBar}
+              className={
+                sideBar
+                  ? "bgSideBar  fixed z-50 h-full right-0 duration-400 ease-linear w-1/2 md:w-3/5 lg:w-2/3 "
+                  : "fixed z-50  -right-full"
+              }
+            ></div>
+            <div className=" bg-white transition duration-600 ease-linear w-1/2 md:w-2/5 lg:w-1/3">
+              <div className="ml-5 pt-5 ">
+                <div className="grid grid-cols-3">
+                  {me ? (
+                    <p className="text-base">Hello, Kudo</p>
+                  ) : (
+                    <NavLink className="col-span-2 " to="/signin">
+                      <button className=" bg-green-500 text-base rounded text-white p-2 md:w-1/2">
+                        Join Fiverr
+                      </button>
+                    </NavLink>
+                  )}
+                  <span
+                    onClick={handleSideBar}
+                    className="col-start-3 text-center text-gray-500 text-2xl"
+                  >
+                    <CloseOutlined />
+                  </span>
+                </div>
+                <ul className="pl-2 pt-4">
+                  <li className="py-2 ">
+                    <NavLink
+                      to="/signin"
+                      className="text-base text-gray-500 hover:text-gray-500"
+                    >
+                      Signin
+                    </NavLink>
+                  </li>
+                  <li className="py-2 text-base text-gray-500">
+                    Browse Categories
+                  </li>
+                  <li className="py-2 text-base text-gray-500">Explore</li>
+                  <li className="py-2 text-base text-gray-500">Fiverr Pro</li>
+                  <li className="py-2 text-base text-gray-500">
+                    Fiverr Business
+                  </li>
+                </ul>
+                <div className="pb-64 pt-8 pl-2">
+                  <h4 className="text-gray-500 text-base">General</h4>
+                  <hr />
+                  <ul>
+                    <li className="text-gray-500 py-2 text-base">Home</li>
+                    <li className="text-gray-500 py-2 text-base">English</li>
+                    <li className="text-gray-500 py-2 text-base">$USD</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* End sidebar */}
+
+          <NavLink
+            to="/"
+            aria-label="Back to homepage"
+            className="pt-4 pl-6  xl:hidden md:col-start-2 md:pl-1 md:pt-6 lg:pt-4"
+          >
+            <svg
+              width="89"
+              height="27"
+              viewBox="0 0 89 27"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                width="89"
-                height="27"
-                viewBox="0 0 89 27"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g fill="#404145">
-                  <path d="m81.6 13.1h-3.1c-2 0-3.1 1.5-3.1 4.1v9.3h-6v-13.4h-2.5c-2 0-3.1 1.5-3.1 4.1v9.3h-6v-18.4h6v2.8c1-2.2 2.3-2.8 4.3-2.8h7.3v2.8c1-2.2 2.3-2.8 4.3-2.8h2zm-25.2 5.6h-12.4c.3 2.1 1.6 3.2 3.7 3.2 1.6 0 2.7-.7 3.1-1.8l5.3 1.5c-1.3 3.2-4.5 5.1-8.4 5.1-6.5 0-9.5-5.1-9.5-9.5 0-4.3 2.6-9.4 9.1-9.4 6.9 0 9.2 5.2 9.2 9.1 0 .9 0 1.4-.1 1.8zm-5.7-3.5c-.1-1.6-1.3-3-3.3-3-1.9 0-3 .8-3.4 3zm-22.9 11.3h5.2l6.6-18.3h-6l-3.2 10.7-3.2-10.8h-6zm-24.4 0h5.9v-13.4h5.7v13.4h5.9v-18.4h-11.6v-1.1c0-1.2.9-2 2.2-2h3.5v-5h-4.4c-4.3 0-7.2 2.7-7.2 6.6v1.5h-3.4v5h3.4z"></path>
-                </g>
-                <g fill="#1dbf73">
-                  <path d="m85.3 27c2 0 3.7-1.7 3.7-3.7s-1.7-3.7-3.7-3.7-3.7 1.7-3.7 3.7 1.7 3.7 3.7 3.7z"></path>
-                </g>
-              </svg>
-            </NavLink>
-          ) : (
-            <NavLink
-              to="/category"
-              aria-label="Back to homepage"
-              className="sm:flex sm:items-center pt-3 pl-6 col-start-2  justify-center"
+              <g fill="#404145">
+                <path d="m81.6 13.1h-3.1c-2 0-3.1 1.5-3.1 4.1v9.3h-6v-13.4h-2.5c-2 0-3.1 1.5-3.1 4.1v9.3h-6v-18.4h6v2.8c1-2.2 2.3-2.8 4.3-2.8h7.3v2.8c1-2.2 2.3-2.8 4.3-2.8h2zm-25.2 5.6h-12.4c.3 2.1 1.6 3.2 3.7 3.2 1.6 0 2.7-.7 3.1-1.8l5.3 1.5c-1.3 3.2-4.5 5.1-8.4 5.1-6.5 0-9.5-5.1-9.5-9.5 0-4.3 2.6-9.4 9.1-9.4 6.9 0 9.2 5.2 9.2 9.1 0 .9 0 1.4-.1 1.8zm-5.7-3.5c-.1-1.6-1.3-3-3.3-3-1.9 0-3 .8-3.4 3zm-22.9 11.3h5.2l6.6-18.3h-6l-3.2 10.7-3.2-10.8h-6zm-24.4 0h5.9v-13.4h5.7v13.4h5.9v-18.4h-11.6v-1.1c0-1.2.9-2 2.2-2h3.5v-5h-4.4c-4.3 0-7.2 2.7-7.2 6.6v1.5h-3.4v5h3.4z"></path>
+              </g>
+
+              <g fill="#1dbf73">
+                <path d="m85.3 27c2 0 3.7-1.7 3.7-3.7s-1.7-3.7-3.7-3.7-3.7 1.7-3.7 3.7 1.7 3.7 3.7 3.7z"></path>
+              </g>
+            </svg>
+          </NavLink>
+
+          <NavLink
+            to="/"
+            aria-label="Back to homepage"
+            className="pt-4 pl-6 hidden xl:block md:col-start-2 md:pl-1"
+          >
+            <svg
+              width="89"
+              height="27"
+              viewBox="0 0 89 27"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                width="89"
-                height="27"
-                viewBox="0 0 89 27"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g fill="#404145">
-                  <path d="m81.6 13.1h-3.1c-2 0-3.1 1.5-3.1 4.1v9.3h-6v-13.4h-2.5c-2 0-3.1 1.5-3.1 4.1v9.3h-6v-18.4h6v2.8c1-2.2 2.3-2.8 4.3-2.8h7.3v2.8c1-2.2 2.3-2.8 4.3-2.8h2zm-25.2 5.6h-12.4c.3 2.1 1.6 3.2 3.7 3.2 1.6 0 2.7-.7 3.1-1.8l5.3 1.5c-1.3 3.2-4.5 5.1-8.4 5.1-6.5 0-9.5-5.1-9.5-9.5 0-4.3 2.6-9.4 9.1-9.4 6.9 0 9.2 5.2 9.2 9.1 0 .9 0 1.4-.1 1.8zm-5.7-3.5c-.1-1.6-1.3-3-3.3-3-1.9 0-3 .8-3.4 3zm-22.9 11.3h5.2l6.6-18.3h-6l-3.2 10.7-3.2-10.8h-6zm-24.4 0h5.9v-13.4h5.7v13.4h5.9v-18.4h-11.6v-1.1c0-1.2.9-2 2.2-2h3.5v-5h-4.4c-4.3 0-7.2 2.7-7.2 6.6v1.5h-3.4v5h3.4z"></path>
-                </g>
-                <g fill="#1dbf73">
-                  <path d="m85.3 27c2 0 3.7-1.7 3.7-3.7s-1.7-3.7-3.7-3.7-3.7 1.7-3.7 3.7 1.7 3.7 3.7 3.7z"></path>
-                </g>
-              </svg>
-            </NavLink>
-          )}
+              <g fill="#fff">
+                <path d="m81.6 13.1h-3.1c-2 0-3.1 1.5-3.1 4.1v9.3h-6v-13.4h-2.5c-2 0-3.1 1.5-3.1 4.1v9.3h-6v-18.4h6v2.8c1-2.2 2.3-2.8 4.3-2.8h7.3v2.8c1-2.2 2.3-2.8 4.3-2.8h2zm-25.2 5.6h-12.4c.3 2.1 1.6 3.2 3.7 3.2 1.6 0 2.7-.7 3.1-1.8l5.3 1.5c-1.3 3.2-4.5 5.1-8.4 5.1-6.5 0-9.5-5.1-9.5-9.5 0-4.3 2.6-9.4 9.1-9.4 6.9 0 9.2 5.2 9.2 9.1 0 .9 0 1.4-.1 1.8zm-5.7-3.5c-.1-1.6-1.3-3-3.3-3-1.9 0-3 .8-3.4 3zm-22.9 11.3h5.2l6.6-18.3h-6l-3.2 10.7-3.2-10.8h-6zm-24.4 0h5.9v-13.4h5.7v13.4h5.9v-18.4h-11.6v-1.1c0-1.2.9-2 2.2-2h3.5v-5h-4.4c-4.3 0-7.2 2.7-7.2 6.6v1.5h-3.4v5h3.4z"></path>
+              </g>
+              <g fill="#1dbf73">
+                <path d="m85.3 27c2 0 3.7-1.7 3.7-3.7s-1.7-3.7-3.7-3.7-3.7 1.7-3.7 3.7 1.7 3.7 3.7 3.7z"></path>
+              </g>
+            </svg>
+          </NavLink>
 
           {me ? (
-            <Collapse className="z-20 " ghost>
+            <Collapse className="z-20 md:col-start-7 md:mt-4" ghost>
               <Panel
-                className="bg-white w-3/5"
+                className=" w-3/4 "
                 header={
-                  <UserOutlined
-                    style={{
-                      fontSize: 24,
-                      paddingLeft: "3.5rem",
-                      paddingTop: 6
-                    }}
-                  />
+                  <span className="text-2xl md:pt-0 md:leading-none  md:text-3xl md:text-black lg:text-black ">
+                    <UserOutlined
+                      style={{
+                        paddingLeft: "3.5rem",
+                        paddingTop: 6
+                      }}
+                    />
+                  </span>
                 }
                 key="1"
               >
-                
                 <NavLink
                   to="/me"
                   className="text-white pl-2 font-semibold text-base "
                 >
-                  Info
+                  Profile
                 </NavLink>
-                <br />
                 <button
                   onClick={handleSignOut}
-                  className="text-white pl-2 pb-1 font-semibold text-base "
+                  className="text-white pl-2 py-1 font-semibold text-base "
                 >
                   Sign out
                 </button>
-                
               </Panel>
             </Collapse>
           ) : (
-            <div className=" pt-5 justify-center">
+            <>
               <NavLink
                 to="/signin"
-                className="text-font-semibold text-base font-semibold text-center pt-5 text-gray-600 md:pl-12 "
+                className="text-font-semibold text-base font-semibold text-center mt-5 text-gray-600 md:col-start-7 md:text-black hidden md:block lg:text-black "
               >
                 Sign In
               </NavLink>
               <NavLink
                 to="/signin"
-                className="text-font-semibold text-base font-semibold text-center pt-5 text-gray-600 md:ml-6 md:text-green-500 md:font-medium md:border md:border-green-500 md:rounded md:mt-4 md:py-1 md:px-4 md:h-7 md:leading-none md:w-3/4 "
+                className="text-font-semibold text-base font-semibold text-center mt-5 text-gray-600 md:mr-16  md:col-start-8 md:text-black lg:h-7 lg:rounded lg:text-white lg:border-green-600 lg:bg-green-500 "
               >
                 Join
               </NavLink>
-            </div>
+            </>
           )}
         </div>
-        {/*  */}
-        {path ? (
-          <NavLink
-            to="/"
-            className="hidden md:hidden lg:block sm:flex sm:items-center p-2 col-start-2"
-          >
-            <svg
-              width="89"
-              height="27"
-              viewBox="0 0 89 27"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g fill="#404145">
-                <path d="m81.6 13.1h-3.1c-2 0-3.1 1.5-3.1 4.1v9.3h-6v-13.4h-2.5c-2 0-3.1 1.5-3.1 4.1v9.3h-6v-18.4h6v2.8c1-2.2 2.3-2.8 4.3-2.8h7.3v2.8c1-2.2 2.3-2.8 4.3-2.8h2zm-25.2 5.6h-12.4c.3 2.1 1.6 3.2 3.7 3.2 1.6 0 2.7-.7 3.1-1.8l5.3 1.5c-1.3 3.2-4.5 5.1-8.4 5.1-6.5 0-9.5-5.1-9.5-9.5 0-4.3 2.6-9.4 9.1-9.4 6.9 0 9.2 5.2 9.2 9.1 0 .9 0 1.4-.1 1.8zm-5.7-3.5c-.1-1.6-1.3-3-3.3-3-1.9 0-3 .8-3.4 3zm-22.9 11.3h5.2l6.6-18.3h-6l-3.2 10.7-3.2-10.8h-6zm-24.4 0h5.9v-13.4h5.7v13.4h5.9v-18.4h-11.6v-1.1c0-1.2.9-2 2.2-2h3.5v-5h-4.4c-4.3 0-7.2 2.7-7.2 6.6v1.5h-3.4v5h3.4z"></path>
-              </g>
-              <g fill="#1dbf73">
-                <path d="m85.3 27c2 0 3.7-1.7 3.7-3.7s-1.7-3.7-3.7-3.7-3.7 1.7-3.7 3.7 1.7 3.7 3.7 3.7z"></path>
-              </g>
-            </svg>
-          </NavLink>
-        ) : (
-          <NavLink
-            to="/category"
-            className="hidden md:hidden lg:block sm:flex sm:items-center p-2 col-start-2"
-          >
-            <svg
-              width="89"
-              height="27"
-              viewBox="0 0 89 27"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g fill="#404145">
-                <path d="m81.6 13.1h-3.1c-2 0-3.1 1.5-3.1 4.1v9.3h-6v-13.4h-2.5c-2 0-3.1 1.5-3.1 4.1v9.3h-6v-18.4h6v2.8c1-2.2 2.3-2.8 4.3-2.8h7.3v2.8c1-2.2 2.3-2.8 4.3-2.8h2zm-25.2 5.6h-12.4c.3 2.1 1.6 3.2 3.7 3.2 1.6 0 2.7-.7 3.1-1.8l5.3 1.5c-1.3 3.2-4.5 5.1-8.4 5.1-6.5 0-9.5-5.1-9.5-9.5 0-4.3 2.6-9.4 9.1-9.4 6.9 0 9.2 5.2 9.2 9.1 0 .9 0 1.4-.1 1.8zm-5.7-3.5c-.1-1.6-1.3-3-3.3-3-1.9 0-3 .8-3.4 3zm-22.9 11.3h5.2l6.6-18.3h-6l-3.2 10.7-3.2-10.8h-6zm-24.4 0h5.9v-13.4h5.7v13.4h5.9v-18.4h-11.6v-1.1c0-1.2.9-2 2.2-2h3.5v-5h-4.4c-4.3 0-7.2 2.7-7.2 6.6v1.5h-3.4v5h3.4z"></path>
-              </g>
-              <g fill="#1dbf73">
-                <path d="m85.3 27c2 0 3.7-1.7 3.7-3.7s-1.7-3.7-3.7-3.7-3.7 1.7-3.7 3.7 1.7 3.7 3.7 3.7z"></path>
-              </g>
-            </svg>
-          </NavLink>
-        )}
 
-        <ul className="items-stretch mr-14 hidden space-x-3 lg:flex">
+        {/* End responsive header */}
+
+        <NavLink
+          to="/"
+          aria-label="Back to homepage"
+          className="xl:block hidden md:hidden sm:flex sm:items-center p-2 col-start-2"
+        >
+          <svg
+            width="89"
+            height="27"
+            viewBox="0 0 89 27"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g fill="#404145">
+              <path d="m81.6 13.1h-3.1c-2 0-3.1 1.5-3.1 4.1v9.3h-6v-13.4h-2.5c-2 0-3.1 1.5-3.1 4.1v9.3h-6v-18.4h6v2.8c1-2.2 2.3-2.8 4.3-2.8h7.3v2.8c1-2.2 2.3-2.8 4.3-2.8h2zm-25.2 5.6h-12.4c.3 2.1 1.6 3.2 3.7 3.2 1.6 0 2.7-.7 3.1-1.8l5.3 1.5c-1.3 3.2-4.5 5.1-8.4 5.1-6.5 0-9.5-5.1-9.5-9.5 0-4.3 2.6-9.4 9.1-9.4 6.9 0 9.2 5.2 9.2 9.1 0 .9 0 1.4-.1 1.8zm-5.7-3.5c-.1-1.6-1.3-3-3.3-3-1.9 0-3 .8-3.4 3zm-22.9 11.3h5.2l6.6-18.3h-6l-3.2 10.7-3.2-10.8h-6zm-24.4 0h5.9v-13.4h5.7v13.4h5.9v-18.4h-11.6v-1.1c0-1.2.9-2 2.2-2h3.5v-5h-4.4c-4.3 0-7.2 2.7-7.2 6.6v1.5h-3.4v5h3.4z"></path>
+            </g>
+            <g fill="#1dbf73">
+              <path d="m85.3 27c2 0 3.7-1.7 3.7-3.7s-1.7-3.7-3.7-3.7-3.7 1.7-3.7 3.7 1.7 3.7 3.7 3.7z"></path>
+            </g>
+          </svg>
+        </NavLink>
+
+        <ul className="items-stretch mr-14 hidden space-x-3 xl:flex">
           <li className="flex">
             <NavLink
               to="/"
@@ -214,7 +258,6 @@ const HeaderJobs = () => {
               Become a Seller
             </NavLink>
           </li>
-
           {me ? (
             <li className="flex">
               <NavLink
@@ -240,10 +283,10 @@ const HeaderJobs = () => {
                   Sign In
                 </NavLink>
               </li>
-              <li className="flex p-2">
+              <li className="flex pt-2">
                 <NavLink
                   to="/signin"
-                  className="joinButton  flex items-center px-6 h-8 -mb-1 bg-green-500  hover:text-white text-white text-base font-semibold border border-white hover:border-green-500 rounded "
+                  className="flex items-center px-6 h-8 -mb-1 bg-transparent  text-green-500 text-base font-semibold border border-green-500  rounded hover:text-white hover:bg-green-500 "
                 >
                   Join
                 </NavLink>
@@ -252,13 +295,36 @@ const HeaderJobs = () => {
           )}
         </ul>
       </div>
+
       <div className="border-b border-t border-gray-300 hidden md:block ">
         <div className="container flex flex-auto flex-wrap text-center">
-          {title.slice(0, 9).map((item) => {
+          {title.slice(0, 10).map((item) => {
             return (
-              <div key={item._id} className=" mt-3 md:mr-4 lg:mr-10 ">
-                <p className="text-base text-gray-500">{item.name}</p>
-              </div>
+              <Space
+                key={item._id}
+                className=" mt-3 md:mr-3 lg:mr-5 xl:mr-8 h-10 "
+                direction="vertical"
+              >
+                <Space wrap>
+                  <Dropdown
+                    overlay={
+                      <Menu className="grid grid-cols-6  w-auto ml-40">
+                        {item.subTypeJobs.map((subType) => {
+                          return (
+                            <Menu.Item key={subType._id} className="col-span-1">
+                              <p className="text-base">{subType.name}</p>
+                            </Menu.Item>
+                          );
+                        })}
+                      </Menu>
+                    }
+                  >
+                    <p className="subType cursor-pointer text-base text-gray-600 font-medium">
+                      {item.name}
+                    </p>
+                  </Dropdown>
+                </Space>
+              </Space>
             );
           })}
         </div>
@@ -267,4 +333,4 @@ const HeaderJobs = () => {
   );
 };
 
-export default HeaderJobs;
+export default Header;

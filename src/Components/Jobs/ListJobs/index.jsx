@@ -1,18 +1,17 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Pagination } from "antd";
-import { Card, Avatar } from "antd";
-// import Pagination from "react-js-pagination";
-
+import { Card } from "antd";
+const { Meta } = Card;
 import { fetchListJobs } from "../../../store/action/jobs";
 import ItemJobs from "../ItemJobs";
 
 const ListJobs = () => {
-  const { Meta } = Card;
   const dispatch = useDispatch();
   const listJobs = useSelector((state) => state.jobs.listJobs);
+  console.log({ listJobs });
 
-  const count = 4;
+  const count = 24;
   const [pageSize, setPageSize] = useState({
     data: listJobs,
     totalPage: 0,
@@ -46,16 +45,14 @@ const ListJobs = () => {
     [setPageSize]
   );
 
-  const { data } = pageSize;
   return (
     <div className="mx-12 xl:mx-0 xl:container border-b pb-10 mt-10 xl:pb-20 xl:mt-20">
-      <h1 className="mb-10 text-2xl">Results for "HTML"</h1>
-      <div className="grid grid-cols-1 mb-6 md:grid-cols-2 xl:grid-cols-4">
+      <div className="grid grid-cols-1 mb-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {listJobs.map((item, index) => {
           return (
             index >= pageSize.minIndex &&
             index < pageSize.maxIndex && (
-              <div key={item._id} className="col-span-1">
+              <div key={item._id} className="col-span-1 md:mr-4 lg:mr-6">
                 <ItemJobs item={item} />
               </div>
             )
@@ -67,7 +64,7 @@ const ListJobs = () => {
         onChange={handleChange}
         pageSize={count}
         current={pageSize.current}
-        total={10}
+        total={listJobs.length}
         className="text-center"
       />
     </div>

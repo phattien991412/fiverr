@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import loadingImg from "../../assets/img/Spinner-1s-200px.svg";
+import { Spin, Space } from "antd";
+import loadingImg from "../../assets/img/loading.gif";
 
 const Loading = () => {
   useEffect(() => {
@@ -11,12 +12,11 @@ const Loading = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-3 ">
-      <img
-        className="col-start-2 mx-auto w-full mt-28"
-        src={loadingImg}
-        alt="loading"
-      />
+    <div className="flex justify-center align-middle bg-white z-50 fixed  w-full h-full">
+      {/* <img className="w-1/5" src={loadingImg} alt="loading" /> */}
+      <Space size="large">
+        <Spin size="large" />
+      </Space>
     </div>
   );
 };

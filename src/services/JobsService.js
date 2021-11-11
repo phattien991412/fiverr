@@ -4,22 +4,30 @@ export class JobsService extends baseService {
   constructor() {
     super();
   }
-
+  // API 20
   fetchListJobs = () => {
     return this.get(`api/jobs`);
   };
-
+  // API 14
   fetchTitleJobs = () => {
     return this.get(`api/type-jobs`);
   };
-
-  fetchListTypeJobs = () => {
-    return this.get(`api/jobs/by-type?type`)
-  }
-
-  fetchSubTypeJobs = () => {
-    return this.get(`api/type-jobs` )
-  }
+  // API 25
+  fetchListTypeJobs = (_id) => {
+    return this.get(`api/jobs/by-type?type=${_id}&skip=${0}&limit=${10}`);
+  };
+  // API 17
+  fetchSubTypeJobs = (_id) => {
+    return this.get(`api/type-jobs/${_id}`);
+  };
+  // API 29
+  searchJobByName = (name) => {
+    return this.get(`api/jobs/`);
+  };
+  // API 23
+  fetchJobsDetail = (id) => {
+    return this.get(`api/jobs/${id}`);
+  };
 }
 
 export const jobsSerivce = new JobsService();

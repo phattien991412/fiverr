@@ -1,14 +1,9 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router";
+import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { DatePicker, Space, ConfigProvider } from "antd";
+import { DatePicker, Space } from "antd";
 import "react-datepicker/dist/react-datepicker.css";
 import { signUpUserSchema } from "../../services/AuthService";
-import moment from "moment";
-import "moment/locale/zh-cn";
-import locale from "antd/lib/locale/zh_CN";
-
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signUp } from "../../store/action/auth";
@@ -43,7 +38,7 @@ const Signup = () => {
           <div className="cursor-pointer flex items-center">
             <NavLink to="/">
               <svg
-                className="mb-12 md:mb-7 md:ml-12"
+                className="mb-12 md:mb-7 "
                 width="89"
                 height="27"
                 viewBox="0 0 89 27"
@@ -62,7 +57,7 @@ const Signup = () => {
         </div>
         <div className=" px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
           <h2
-            className="pt-8 md:pt-0 md:-mt-3 text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
+            className="pt-8 lg:pt-0 md:-mt-3 text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
       xl:text-bold"
           >
             Sign up

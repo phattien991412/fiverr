@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { TOKEN } from "./util/config";
@@ -29,12 +29,17 @@ function App() {
       );
   }, [dispatch]);
 
+  const isLoading = useSelector((state) => state.loading.isLoading)
+
   return (
     <BrowserRouter>
+    {isLoading && <Loading/>}
       <Switch>
+        <AuthRoute path="/loading" component={Loading} redirectPath="/" />
         <AuthRoute path="/signin" component={Signin} redirectPath="/" />
         <AuthRoute path="/signup" component={Signup} redirectPath="/" />
-        <AuthRoute path="/category" component={Category} redirectPath="/" />
+        {/* <AuthRoute path="/category" component={Category} redirectPath="/" /> */}
+        <AuthRoute path="/category/:_id" component={Category} redirectPath="/" />
         <AuthRoute path="/categories/jobs" component={Jobs} redirectPath="/" />
         <AuthRoute path="/detail/:id" component={Detail} redirectPath="/" />
         <PrivateRoute path="/me" component={UserInfo} redirectPath="/" />

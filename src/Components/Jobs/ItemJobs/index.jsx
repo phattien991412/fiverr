@@ -3,8 +3,6 @@ import React from "react";
 import { HeartFilled } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 
-import notFoundImage from "../../../assets/img/notFoundImg.png";
-
 const ItemJobs = (props) => {
   const { _id, name, image } = props.item;
 
@@ -17,7 +15,7 @@ const ItemJobs = (props) => {
   return (
     <NavLink to={`/detail/${_id}`}>
       <Card
-      className="w-full xl:w-72 mb-9"
+      className="w-full  xl:w-72 mb-9"
         cover={
           <Image
             placeholder={true}

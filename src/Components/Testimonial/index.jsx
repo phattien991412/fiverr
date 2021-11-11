@@ -5,6 +5,10 @@ import { Modal } from "react-responsive-modal";
 import ReactPlayer from "react-player";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "./style.css";
+import TestimoialKayKim from "../../assets/video/kaykim-testimonial.mp4";
+import TestimonialCaitlin from "../../assets/video/caitlin-testimonial.mp4";
+import TestimonialTimDan from "../../assets/video/tim-dan-testimonial.mp4";
+import TestimonialBrighid from "../../assets/video/brighid-testimonial.mp4";
 
 const Testimonial = () => {
   const [open, setOpen] = useState(false);
@@ -25,7 +29,11 @@ const Testimonial = () => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
@@ -37,9 +45,7 @@ const Testimonial = () => {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
-          nextArrow: false,
-          prevArrow: false
+          dots: true
         }
       },
       {
@@ -48,7 +54,7 @@ const Testimonial = () => {
           slidesToShow: 1,
           slidesToScroll: 1,
           initialSlide: 1,
-          autoplay: false,
+          autoplay: true,
           fade: false
         }
       },
@@ -57,7 +63,7 @@ const Testimonial = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          autoplay: false,
+          autoplay: true,
           fade: false
         }
       }
@@ -89,9 +95,10 @@ const Testimonial = () => {
                 </button>
                 <Modal open={open} onClose={onCloseModal} center>
                   <ReactPlayer
-                    width="750px"
-                    height="400px"
-                    url="https://www.youtube.com/watch?v=U4LQlauIbBU&ab_channel=GioMuaDongz"
+                    controls={true}
+                    width="800px"
+                    height="450px"
+                    url={TestimoialKayKim}
                   />
                 </Modal>
               </div>
@@ -145,9 +152,10 @@ const Testimonial = () => {
                 </button>
                 <Modal open={open} onClose={onCloseModal} center>
                   <ReactPlayer
-                    width="750px"
-                    height="400px"
-                    url="https://www.youtube.com/watch?v=U4LQlauIbBU&ab_channel=GioMuaDongz"
+                    controls={true}
+                    width="800px"
+                    height="450px"
+                    url={TestimonialCaitlin}
                   />
                 </Modal>
               </div>
@@ -199,9 +207,10 @@ const Testimonial = () => {
                 </button>
                 <Modal open={open} onClose={onCloseModal} center>
                   <ReactPlayer
-                    width="750px"
-                    height="400px"
-                    url="https://www.youtube.com/watch?v=U4LQlauIbBU&ab_channel=GioMuaDongz"
+                    controls={true}
+                    width="800px"
+                    height="450px"
+                    url={TestimonialTimDan}
                   />
                 </Modal>
               </div>
@@ -252,9 +261,10 @@ const Testimonial = () => {
                 </button>
                 <Modal open={open} onClose={onCloseModal} center>
                   <ReactPlayer
-                    width="750px"
-                    height="400px"
-                    url="https://www.youtube.com/watch?v=U4LQlauIbBU&ab_channel=GioMuaDongz"
+                    controls={true}
+                    width="800px"
+                    height="450px"
+                    url={TestimonialBrighid}
                   />
                 </Modal>
               </div>

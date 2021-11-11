@@ -4,7 +4,9 @@ const initialState = {
   listJobs: [],
   titleJobs: [],
   subTypeJobs: [],
-  pagination: { currentPage: 1 }
+  typeJobs: [],
+  searchJob: [],
+  detail: []
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -17,16 +19,20 @@ export default (state = initialState, { type, payload }) => {
       state.titleJobs = payload;
       return { ...state };
 
-      case actionType.SET_SUB_TYPE_JOBS:
-        state.subTypeJobs = payload;
-        return { ...state };
-
-    case actionType.SET_TEST:
-      state.movie = payload;
+    case actionType.SET_SUB_TYPE_JOBS:
+      state.subTypeJobs = payload;
       return { ...state };
 
-    case actionType.SET_PAGINATION:
-      state.pagination = payload;
+    case actionType.SET_LIST_TYPE_JOBS:
+      state.typeJobs = payload;
+      return { ...state };
+
+    case actionType.SEARCH_JOBS:
+      state.searchJob = payload;
+      return { ...state };
+
+    case actionType.SET_DETAIL:
+      state.detail = payload;
       return { ...state };
     default:
       return state;

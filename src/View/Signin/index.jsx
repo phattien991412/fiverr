@@ -28,7 +28,6 @@ const Signin = () => {
             <div className="cursor-pointer flex items-center">
               <NavLink to="/">
                 <svg
-                  className="md:ml-12"
                   width="89"
                   height="27"
                   viewBox="0 0 89 27"

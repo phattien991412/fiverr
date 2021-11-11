@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Business from "../../Components/Business";
 import HomeCarousel from "../../Components/Carousel";
 import Header from "../../Components/Header";
@@ -12,6 +12,7 @@ const Home = (props) => {
   return (
     <>
       <Header />
+
       <HomeCarousel />
 
       <div style={{ background: "#fafafa" }}>

@@ -1,11 +1,15 @@
 import { Carousel } from "antd";
-import React from "react";
+import React, { Fragment, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import "./style.css";
 import { SearchOutlined } from "@ant-design/icons";
 import { Rate } from "antd";
 import Slider from "react-slick";
+import { useDispatch } from "react-redux";
+import { searchJobByName } from "../../store/action/jobs";
+import { NavLink } from "react-router-dom";
 
-const HomeCarousel = () => {
+const HomeCarousel = (props) => {
   function SampleNextArrow(props) {
     const { style } = props;
     return <div style={{ ...style, display: "none" }} />;
@@ -56,6 +60,32 @@ const HomeCarousel = () => {
       }
     ]
   };
+
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.jobs.searchJob);
+  console.log(data)
+
+  const [wordEntered, setWordEntered] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
+
+  const handleSearch = (event) => {
+    const searchWord = event.target.value;
+    setWordEntered(searchWord);
+
+    const newFilter = data.filter((value) => {
+      return value?.name.toLowerCase().includes(searchWord.toLowerCase());
+    });
+
+    if (searchWord === "") {
+      setFilteredData([]);
+    } else {
+      setFilteredData(newFilter);
+    }
+  };
+
+  useEffect(() => {
+    dispatch(searchJobByName());
+  }, [dispatch]);
 
   return (
     <>
@@ -111,39 +141,65 @@ const HomeCarousel = () => {
 
       <div className="grid grid-cols-2 text-white absolute top-24 left-8 md:left-16 md:pr-8 lg:top-48 lg:left-10  xl:top-36 xl:left-24 -translate-x-1/2 translate-y-1/2">
         <div className="col-span-2 lg:w-2/3 xl:w-full xl:col-span-1">
-          <h2 className="col-span-2  text-white text-4xl md:pb-4 lg:text-5xl xl:col-span-1 ">
-            Find the perfect <i className="font-serif">freelance</i> services for your business
+          <h2 className="col-span-2  text-white text-4xl pr-8 md:pb-4 lg:text-5xl xl:col-span-1 ">
+            Find the perfect <i className="font-serif">freelance</i> services
+            for your business
           </h2>
           <div className="col-span-2 lg:col-span-1 relative mb-4 pr-8 lg:pr-0">
             <SearchOutlined
-              className="text-xl text-black absolute left-3 top-4 z-20 "
+              className="text-xl text-black absolute left-4 top-2 z-20 "
               style={{ color: "#9ca3af" }}
             />
 
             <input
-              className="pl-11 mb-4 lg:mb-0 h-12 w-full lg:w-9/12 rounded lg:rounded-tr-none lg:rounded-br-none lg:rounded-tl lg:rounded-bl outline-none text-black"
+              onChange={handleSearch}
+              value={wordEntered}
+              className="relative pl-11 mb-4 lg:mb-0 h-12 w-full lg:w-9/12 rounded lg:rounded-tr-none lg:rounded-br-none lg:rounded-tl lg:rounded-bl outline-none text-black"
               placeholder="Try &#34;buiding mobile app&#34;"
               type="text"
             />
-            <button className="bg-green-500 text-white h-12 px-6 w-full lg:w-1/6 rounded lg:rounded-tl-none lg:rounded-bl-none lg:rounded-tr lg:rounded-br">
+
+            <button className="bg-green-500 md:z-10 text-white h-12 px-6 w-full lg:w-1/6 rounded lg:rounded-tl-none lg:rounded-bl-none lg:rounded-tr lg:rounded-br">
               Search
             </button>
+
+            {filteredData.length !== 0 && (
+              <div className="search col-span-2 overflow-y-auto bg-white z-30 absolute top-10 lg:w-3/4 ">
+                {filteredData?.map((item) => {
+                  return (
+                    <NavLink to={`/category/${item?._id}`} key={item._id}>
+                      <p className="text-black hover:text-black ml-5">
+                        {item?.name}
+                      </p>
+                    </NavLink>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
-        <div className="col-start-1 hidden lg:block lg:col-span-2 ">
-          <ul className="flex">
+        <div className="col-start-1 hidden lg:block lg:col-span-2 h-16 ">
+          <ul className="flex ">
             <span className="font-semibold">Popular: </span>
             <li className=" mx-2">
-              <p className="font-semibold border-2 rounded-xl hover:bg-white hover:text-black cursor-pointer lg:px-3 ">Website Design</p>
+              <p className="font-semibold border-2 rounded-xl hover:bg-white hover:text-black cursor-pointer lg:px-3 ">
+                Website Design
+              </p>
             </li>
             <li className=" mx-2">
-              <p className="font-semibold border-2 rounded-xl hover:bg-white hover:text-black cursor-pointer lg:px-3 ">WordPress</p>
+              <p className="font-semibold border-2 rounded-xl hover:bg-white hover:text-black cursor-pointer lg:px-3 ">
+                WordPress
+              </p>
             </li>
             <li className=" mx-2">
-              <p className="font-semibold border-2 rounded-xl hover:bg-white hover:text-black cursor-pointer lg:px-3 ">Logo Design</p>
+              <p className="font-semibold border-2 rounded-xl hover:bg-white hover:text-black cursor-pointer lg:px-3 ">
+                Logo Design
+              </p>
             </li>
             <li className=" mx-2">
-              <p className="font-semibold border-2 rounded-xl hover:bg-white hover:text-black cursor-pointer lg:px-3 ">Dropshipping</p>
+              <p className="font-semibold border-2 rounded-xl hover:bg-white hover:text-black cursor-pointer lg:px-3 ">
+                Dropshipping
+              </p>
             </li>
           </ul>
         </div>

@@ -1,21 +1,29 @@
-
 .react-responsive-modal-modal {
-    padding: 0 !important;
+  padding: 0 !important;
+  width: 800px;
+  height: 450px;
 }
+
 
 @media screen and (max-width: 768px) {
-    .react-responsive-modal-container {
-        width: 700px !important;
-    }
-    .react-player {
-        width: 700px !important;
-    }
+  .react-responsive-modal-container {
+    width: 700px;
+    height: 400px;
+  }
+  .react-player {
+    width: 700px;
+    height: 400px;
+  }
 }
 @media screen and (max-width: 576px) {
-    .react-responsive-modal-container {
-        width: 400px !important;
-    }
-    .react-player {
-        width: 400px !important;
-    }
+  .react-responsive-modal-container {
+    width: 419px;
+    height: 300px;
+    margin-left: 6px;
+  }
+  .react-player {
+    width: 419px;
+    height: 300px;
+    margin-left: 6px;
+  }
 }

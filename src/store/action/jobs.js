@@ -1,7 +1,6 @@
 import axios from "axios";
 import { actionType } from "./type";
 import { createAction } from "./index";
-import { TOKEN } from "../../util/config";
 import { jobsSerivce } from "../../services/JobsService";
 
 export const fetchListJobs = (callback) => {
@@ -12,17 +11,14 @@ export const fetchListJobs = (callback) => {
 
       dispatch(createAction(actionType.SET_LIST_JOBS, res.data));
 
-      console.log("listJobs", res);
       if (callback) {
         callback();
       }
-    } catch (err) {
-      console.log("listJobs", err);
-    }
+    } catch (err) {}
 
     setTimeout(() => {
       dispatch(createAction(actionType.IS_LOADING, false));
-    }, 1000);
+    }, 400);
   };
 };
 
@@ -33,35 +29,82 @@ export const fetchTitleJobs = (callback) => {
       const res = await jobsSerivce.fetchTitleJobs();
 
       dispatch(createAction(actionType.SET_TITLE_JOBS, res.data));
+
       if (callback) {
         callback();
       }
-      console.log('title', res)
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
     setTimeout(() => {
       dispatch(createAction(actionType.IS_LOADING, false));
-    }, 1000);
+    }, 400);
   };
 };
 
-export const fetchSubTypeJobs = (type, callback) => {
+export const fetchSubTypeJobs = (_id, callback) => {
   return async (dispatch) => {
     dispatch(createAction(actionType.IS_LOADING, true));
     try {
-      const res = await jobsSerivce.fetchSubTypeJobs(type);
+      const res = await jobsSerivce.fetchSubTypeJobs(_id);
 
-      dispatch(createAction(actionType.SET_SUB_TYPE_JOBS, res.data.type));
+      dispatch(createAction(actionType.SET_SUB_TYPE_JOBS, res.data));
+
       if (callback) {
         callback();
       }
-      console.log('subtype', res)
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
     setTimeout(() => {
       dispatch(createAction(actionType.IS_LOADING, false));
-    }, 1000);
+    }, 400);
+  };
+};
+
+export const fetchListTypeJobs = (_id, callback) => {
+  return async (dispatch) => {
+    dispatch(createAction(actionType.IS_LOADING, true));
+    try {
+      const res = await jobsSerivce.fetchListTypeJobs(_id);
+
+      dispatch(createAction(actionType.SET_LIST_TYPE_JOBS, res.data));
+
+      if (callback) {
+        callback();
+      }
+    } catch (err) {}
+    setTimeout(() => {
+      dispatch(createAction(actionType.IS_LOADING, false));
+    }, 400);
+  };
+};
+
+export const searchJobByName = (callback) => {
+  return async (dispatch) => {
+    try {
+      const res = await jobsSerivce.searchJobByName();
+
+      dispatch(createAction(actionType.SEARCH_JOBS, res.data));
+
+      if (callback) {
+        callback();
+      }
+    } catch (err) {}
+  };
+};
+
+export const fetchJobsDetail = (id, callback) => {
+  return async (dispatch) => {
+    dispatch(createAction(actionType.IS_LOADING, true));
+
+    try {
+      const res = await jobsSerivce.fetchJobsDetail(id);
+
+      dispatch(createAction(actionType.SET_DETAIL, res.data));
+
+      if (callback) {
+        callback();
+      }
+    } catch (err) {}
+    setTimeout(() => {
+      dispatch(createAction(actionType.IS_LOADING, false));
+    }, 400);
   };
 };

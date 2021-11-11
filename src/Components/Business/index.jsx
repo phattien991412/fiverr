@@ -1,5 +1,6 @@
 import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { CheckCircleOutlined } from "@ant-design/icons";
 
 const Business = () => {
   return (
@@ -47,16 +48,34 @@ const Business = () => {
                 dedicated to businesses
               </p>
               <ul className="xl:pr-40">
-                <li className="text-lg">
-                  Connect to freelancers with proven business experience
+                <li className="flex text-lg">
+                  <span className="-mt-1 pr-2 text-xl ">
+                    <CheckCircleOutlined
+                      
+                      style={{ color: "rgb(122, 125, 133)" }}
+                    />
+                  </span>
+                  <span>Connect to freelancers with proven business experience</span>
                 </li>
-                <li className="text-lg my-4">
-                  Get matched with the perfect talent by a customer success
-                  manager
+                <li className="flex text-lg my-4">
+                <span className="-mt-1 pr-2 text-xl ">
+                    <CheckCircleOutlined
+                      
+                      style={{ color: "rgb(122, 125, 133)" }}
+                    />
+                  </span>
+                  <span>Get matched with the perfect talent by a customer success
+                  manager</span>
                 </li>
-                <li className="text-lg">
-                  Manage teamwork and boost productivity with one powerful
-                  workspace
+                <li className="flex text-lg">
+                <span className="-mt-1 pr-2 text-xl ">
+                    <CheckCircleOutlined
+                      
+                      style={{ color: "rgb(122, 125, 133)" }}
+                    />
+                  </span>
+                  <span>Manage teamwork and boost productivity with one powerful
+                  workspace</span>
                 </li>
               </ul>
             </div>

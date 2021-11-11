@@ -1,11 +1,19 @@
 .ant-collapse-arrow {
-    display: none !important;
+  display: none !important;
 }
 
 .ant-collapse-content-box {
-    background-color: #28a745 !important;
-    padding: 0 !important;
-    border-radius: 4px;
+  background-color: rgb(153, 153, 153) !important;
+  padding: 0 !important;
+  border-radius: 4px;
+}
+
+.subType:hover {
+  border-bottom: 2px #28a745 solid;
+}
+
+.bgSideBar {
+  background-color: rgba(24, 24, 24, 0.438);
 }
 /* 
 @media screen and (max-width: 1200px) {
@@ -17,7 +25,7 @@
 @media screen and (max-width: 768px) {
     .header {
         /* background: #fff; */
-        /* position: fixed;
+/* position: fixed;
         z-index: 99;
 
         
