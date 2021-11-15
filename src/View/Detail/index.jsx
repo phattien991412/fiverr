@@ -293,8 +293,8 @@ const Detail = (props) => {
                 </li>
               </ul>
             </div>
-            <div className="grid grid-cols-3 pt-4">
-              <div>
+            <div className="grid grid-cols-4 md:grid-cols-3 pt-4">
+              <div className="col-span-2 md:col-span-1">
                 <p className="pb-2">Program Language</p>
                 <ul>
                   <li className="pb-2">
@@ -303,7 +303,7 @@ const Detail = (props) => {
                 </ul>
               </div>
 
-              <div className="col-start-2">
+              <div className="col-span-2 md:col-start-2">
                 <p className="pb-2">Expertise</p>
                 <ul>
                   <li className="pb-2">
