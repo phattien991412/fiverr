@@ -21,7 +21,7 @@ const Proposition = () => {
           A whole world of freelance talent at your fingertips
         </h2>
         <ul>
-          <li>
+          <li className="my-4">
             <h5 className="text-lg">
               <CheckCircleOutlined
                 className="-mt-3  pr-5 w-6 h-6 leading-none"
@@ -34,7 +34,7 @@ const Proposition = () => {
               just project-based pricing.
             </p>
           </li>
-          <li>
+          <li className="my-4">
             <h5 className="text-lg">
               <CheckCircleOutlined
                 className="-mt-2  pr-5 w-6 h-6 leading-none"
@@ -47,7 +47,7 @@ const Proposition = () => {
               minutes.
             </p>
           </li>
-          <li>
+          <li className="my-4">
             <h5 className="text-lg">
               <CheckCircleOutlined
                 className="-mt-2 pr-5 w-6 h-6 leading-none"
@@ -60,7 +60,7 @@ const Proposition = () => {
               until you approve the work.
             </p>
           </li>
-          <li>
+          <li className="my-4">
             <h5 className="text-lg">
               <CheckCircleOutlined
                 className="-mt-2  pr-5 w-6 h-6 leading-none"
@@ -100,8 +100,8 @@ const Proposition = () => {
               controls={true}
               url={Video}
               className="react-player"
-              width="800px"
-              height="450px"
+              width="100%"
+              height="100%"
             />
           </Modal>
         </div>

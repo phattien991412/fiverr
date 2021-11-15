@@ -9,9 +9,8 @@ import ItemJobs from "../ItemJobs";
 const ListJobs = () => {
   const dispatch = useDispatch();
   const listJobs = useSelector((state) => state.jobs.listJobs);
-  console.log({ listJobs });
 
-  const count = 24;
+  const count = 12;
   const [pageSize, setPageSize] = useState({
     data: listJobs,
     totalPage: 0,
@@ -52,7 +51,7 @@ const ListJobs = () => {
           return (
             index >= pageSize.minIndex &&
             index < pageSize.maxIndex && (
-              <div key={item._id} className="col-span-1 md:mr-4 lg:mr-6">
+              <div key={item._id} className="col-span-1 mb-4 md:mr-4 lg:mr-6 xl:mb-8">
                 <ItemJobs item={item} />
               </div>
             )

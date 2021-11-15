@@ -4,12 +4,10 @@ import HeaderJobs from "../../Components/Jobs/HeaderJobs";
 import { useSelector, useDispatch } from "react-redux";
 
 import { NavLink } from "react-router-dom";
-import { fetchListTypeJobs, fetchSubTypeJobs } from "../../store/action/jobs";
+import { fetchSubTypeJobs } from "../../store/action/jobs";
 
 const Category = (props) => {
   const subType = useSelector((state) => state.jobs.subTypeJobs);
-  console.log("subType", subType);
-  // const listTypeJobs = useSelector((state) => state.jobs.typeJobs);
 
   const dispatch = useDispatch();
 
@@ -18,10 +16,6 @@ const Category = (props) => {
     dispatch(fetchSubTypeJobs(_id));
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   const { _id } = props.match.params;
-  //   dispatch(fetchListTypeJobs(_id));
-  // }, []);
   return (
     <>
       <HeaderJobs />
@@ -38,9 +32,9 @@ const Category = (props) => {
           <div className="col-start-1 col-span-2 ml-24 hidden xl:block">
             <h1 className="text-lg font-semibold pb-2">{subType.name}</h1>
 
-            {subType?.subTypeJobs?.map((item) => {
+            {subType.subTypeJobs?.map((item) => {
               return (
-                <ul>
+                <ul key={item._id}>
                   <li className="mb-3">
                     <NavLink
                       to={`/categories/jobs`}
@@ -56,7 +50,7 @@ const Category = (props) => {
 
           <div className="xl:col-start-3 xl:col-span-4">
             <div className="grid grid-cols-2 lg:grid-cols-3">
-              {subType?.subTypeJobs?.map((item) => {
+              {subType.subTypeJobs?.map((item) => {
                 return (
                   <div
                     key={item._id}

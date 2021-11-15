@@ -18,7 +18,10 @@ export const signUpUserSchema = yup.object().shape({
 
 export const signInUserSchema = yup.object().shape({
   email: yup.string().required("Email is required").email("Email is invalid"),
-  password: yup.string().required("Password is required")
+  password: yup
+    .string()
+    .min(6, "Passwords must be at least 6 characters long.")
+    .required("Password is required")
 });
 
 export class AuthService extends baseService {

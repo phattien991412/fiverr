@@ -3,10 +3,9 @@ import "./style.css";
 import { useHistory, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../store/action/auth";
-import { Collapse, Menu, Dropdown, Space } from "antd";
+import { Menu, Dropdown, Space } from "antd";
 import { UserOutlined, CloseOutlined, SearchOutlined } from "@ant-design/icons";
 import { fetchTitleJobs } from "../../store/action/jobs";
-const { Panel } = Collapse;
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -62,7 +61,10 @@ const Header = () => {
 
   const handleSideBar = () => setSideBar(!sideBar);
 
-  
+  const [showOption, setShowOption] = useState(false);
+  const handleShowOption = () => {
+    setShowOption(!showOption);
+  };
 
   return (
     <header
@@ -121,26 +123,27 @@ const Header = () => {
           {/* Sidebar */}
 
           <div
-            className={` w-full fixed  inset-y-0 left-0 z-40 overflow-y ease-out transform translate-x-0 ${
-              sideBar ? "transition duration-600 ease-out translate-x-0  " : "transition duration-600 ease-in -translate-x-full "
+            style={{ zIndex: 1000 }}
+            className={` w-full fixed inset-y-0 left-0 ease-out transform translate-x-0 ${
+              sideBar
+                ? "transition duration-600 ease-out translate-x-0  "
+                : "transition duration-600 ease-in -translate-x-full "
             }`}
           >
             <div
               onClick={handleSideBar}
-              className={`bgSideBar w-1/2 fixed inset-y-0 right-0 z-10 overflow-y-auto ease-out transform translate-x-0 ${
-                sideBar
-                  ? "transition duration-600 ease-out translate-x-0  "
-                  :  "transition duration-600 ease-in -translate-x-full"
+              className={`bgSideBar w-1/2 fixed inset-y-0 right-0 z-10 overflow-y-auto ease-out transform translate-x-0 md:w-2/3 lg:w-3/4 ${
+                sideBar ? "translate-x-0  " : " -translate-x-full"
               }`}
             ></div>
-            <div className=" bg-white transition duration-600 ease-linear w-1/2 md:w-2/5 lg:w-1/3">
+            <div className=" bg-white transition duration-600 ease-linear w-1/2 md:w-1/3 lg:w-1/4">
               <div className="ml-5 pt-5 ">
                 <div className="grid grid-cols-3">
                   {me ? (
                     <p className="col-span-2 pt-3 text-base">Hello, Kudo</p>
                   ) : (
                     <NavLink className="col-span-2 " to="/signin">
-                      <button className=" bg-green-500 text-base rounded text-white p-2 md:w-1/2">
+                      <button className=" bg-green-500 text-base rounded text-white p-2 ">
                         Join Fiverr
                       </button>
                     </NavLink>
@@ -269,7 +272,7 @@ const Header = () => {
           </NavLink>
 
           {header ? (
-            <ul className="hidden lg:flex lg:col-start-4 lg:col-span-3 lg:justify-center lg:mt-2 ">
+            <ul className="mb-0 hidden lg:flex lg:col-start-4 lg:col-span-3 lg:justify-center lg:mt-2 ">
               <li className="flex">
                 <NavLink
                   to="/"
@@ -296,7 +299,7 @@ const Header = () => {
               </li>
             </ul>
           ) : (
-            <ul className="hidden lg:flex lg:col-start-4 lg:col-span-3 lg:justify-center lg:mt-2 ">
+            <ul className="mb-4 hidden lg:flex lg:col-start-4 lg:col-span-3 lg:justify-center lg:mt-2 ">
               <li className="flex">
                 <NavLink
                   to="/"
@@ -325,68 +328,63 @@ const Header = () => {
           )}
 
           {me ? (
-            <Collapse
-              className="collapse z-0 md:col-start-7 md:mt-4  lg:mx-auto "
-              ghost
-            >
+            <div className="relative inline-block text-center md:col-start-7  lg:mx-auto">
               {header ? (
-                <Panel
-                  className=" w-3/4 "
-                  header={
-                    <span className="text-2xl md:pt-0 md:leading-none  md:text-3xl md:text-black lg:text-black ">
-                      <UserOutlined
-                        style={{
-                          paddingLeft: "3.5rem",
-                          paddingTop: 6
-                        }}
-                      />
-                    </span>
-                  }
-                  key="1"
-                >
-                  <NavLink
-                    to="/me"
-                    className="text-white pl-2 font-semibold text-base  "
-                  >
-                    Profile
-                  </NavLink>
-                  <button
-                    onClick={handleSignOut}
-                    className="text-white pl-2 py-1 font-semibold text-base "
-                  >
-                    Sign out
-                  </button>
-                </Panel>
+                <div onClick={handleShowOption} className="text-black pt-1.5">
+                  <UserOutlined
+                    style={{
+                      paddingLeft: "3.5rem",
+                      paddingTop: 6,
+                      fontSize: "2rem"
+                    }}
+                  />
+                </div>
               ) : (
-                <Panel
-                  className=" w-3/4 "
-                  header={
-                    <span className="text-2xl md:pt-0 md:leading-none  md:text-3xl md:text-black lg:text-white ">
-                      <UserOutlined
-                        style={{
-                          paddingLeft: "3.5rem",
-                          paddingTop: 6
-                        }}
-                      />
-                    </span>
-                  }
-                  key="1"
+                <div
+                  onClick={handleShowOption}
+                  className="text-white md:text-black pt-1.5 md:pt-3 lg:pt-1.5 lg:text-white"
                 >
-                  <NavLink
-                    to="/me"
-                    className="text-white pl-2 font-semibold text-base  "
-                  >
-                    Profile
-                  </NavLink>
-                  <button
-                    onClick={handleSignOut}
-                    className="text-white  pl-2 py-1 font-semibold text-base "
-                  >
-                    Sign out
-                  </button>
-                </Panel>
+                  <UserOutlined
+                    style={{
+                      paddingLeft: "3.5rem",
+                      paddingTop: 6,
+                      fontSize: "2rem"
+                    }}
+                  />
+                </div>
               )}
-            </Collapse>
+              {showOption && (
+                <div
+                  className="origin-top-right absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="menu-button"
+                  tabIndex={-1}
+                >
+                  <div className="py-1" role="none">
+                    <NavLink
+                      to="/me"
+                      className="text-gray-700 block text-left px-4 py-1 text-sm font-medium"
+                      role="menuitem"
+                      tabIndex={-1}
+                    >
+                      Profile
+                    </NavLink>
+
+                    <button
+                      onClick={handleSignOut}
+                      type="button"
+                      className="text-gray-700 block w-full text-left px-4 pb-1 text-sm font-medium"
+                      role="menuitem"
+                      tabIndex={-1}
+                      id="menu-item-3"
+                    >
+                      Sign out
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
           ) : (
             <>
               <NavLink
@@ -416,7 +414,7 @@ const Header = () => {
             <NavLink
               to="/"
               aria-label="Back to homepage"
-              className="xl:block hidden md:hidden sm:flex sm:items-center p-2 col-start-2"
+              className="pt-3 xl:block hidden md:hidden sm:flex sm:items-center p-2 col-start-2"
             >
               <svg
                 width="89"
@@ -436,7 +434,7 @@ const Header = () => {
             <NavLink
               to="/"
               aria-label="Back to homepage"
-              className="xl:block hidden md:hidden sm:flex sm:items-center p-2 col-start-2"
+              className="pt-3 xl:block hidden md:hidden sm:flex sm:items-center p-2 col-start-2"
             >
               <svg
                 width="89"
@@ -471,7 +469,7 @@ const Header = () => {
             </div>
           ) : null}
 
-          <ul className="items-stretch mr-14 hidden space-x-3 xl:flex">
+          <ul className="mb-4 items-stretch mr-14 hidden space-x-3 xl:flex">
             <li className="flex">
               <NavLink
                 to="/"
@@ -545,7 +543,7 @@ const Header = () => {
                     Sign In
                   </NavLink>
                 </li>
-                <li className="flex mt-3">
+                <li className="flex mt-2">
                   <NavLink
                     to="/signin"
                     className={

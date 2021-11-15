@@ -1,5 +1,4 @@
 import React from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const MarketPlace = () => {
   return (
@@ -9,8 +8,8 @@ const MarketPlace = () => {
         <ul className="flex flex-wrap text-center">
           <li className="mb-14 w-1/2 md:w-1/3  lg:w-1/4 xl:w-1/5 col-auto ">
             <a href="#">
-              <LazyLoadImage
-                effect="opacity"
+              <img
+                loading="lazy"
                 className="w-1/3 lg:w-1/4 xl:w-1/5 m-auto "
                 src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/graphics-design.d32a2f8.svg"
                 alt="Graphics & Design"
@@ -21,8 +20,8 @@ const MarketPlace = () => {
 
           <li className="mb-14 w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 col-span-1">
             <a href="#">
-              <LazyLoadImage
-                effect="opacity"
+              <img
+                loading="lazy"
                 className="w-1/3 lg:w-1/4 xl:w-1/5 m-auto "
                 src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/online-marketing.74e221b.svg"
                 alt="Digital Marketing"
@@ -33,8 +32,8 @@ const MarketPlace = () => {
 
           <li className="mb-14 w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5">
             <a href="#">
-              <LazyLoadImage
-                effect="opacity"
+              <img
+                loading="lazy"
                 className="w-1/3 lg:w-1/4 xl:w-1/5 m-auto "
                 src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/writing-translation.32ebe2e.svg"
                 alt="Writing & Translation"
@@ -45,8 +44,8 @@ const MarketPlace = () => {
 
           <li className="mb-14 w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5">
             <a href="#">
-              <LazyLoadImage
-                effect="opacity"
+              <img
+                loading="lazy"
                 className="w-1/3 lg:w-1/4 xl:w-1/5 m-auto "
                 src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/video-animation.f0d9d71.svg"
                 alt="Video & Animation"
@@ -57,8 +56,8 @@ const MarketPlace = () => {
 
           <li className="mb-14 w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5">
             <a href="#">
-              <LazyLoadImage
-                effect="opacity"
+              <img
+                loading="lazy"
                 className="w-1/3 lg:w-1/4 xl:w-1/5 m-auto "
                 src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/music-audio.320af20.svg"
                 alt="Music & Audio"
@@ -69,8 +68,8 @@ const MarketPlace = () => {
 
           <li className="mb-14 w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5">
             <a href="#">
-              <LazyLoadImage
-                effect="opacity"
+              <img
+                loading="lazy"
                 className="w-1/3 lg:w-1/4 xl:w-1/5 m-auto "
                 src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/programming.9362366.svg"
                 alt="Programming & Tech"
@@ -81,8 +80,8 @@ const MarketPlace = () => {
 
           <li className="mb-14 w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5">
             <a href="#">
-              <LazyLoadImage
-                effect="opacity"
+              <img
+                loading="lazy"
                 className="w-1/3 lg:w-1/4 xl:w-1/5 m-auto "
                 src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/business.bbdf319.svg"
                 alt="Business"
@@ -93,8 +92,8 @@ const MarketPlace = () => {
 
           <li className="mb-14 w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5">
             <a href="#">
-              <LazyLoadImage
-                effect="opacity"
+              <img
+                loading="lazy"
                 className="w-1/3 lg:w-1/4 xl:w-1/5 m-auto "
                 src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/lifestyle.745b575.svg"
                 alt="Lifestyle"

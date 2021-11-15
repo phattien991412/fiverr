@@ -62,7 +62,7 @@ const Service = () => {
   };
   return (
     <div className="xl:container xl:mx-0 mx-5 my-0  xl:my-20">
-      <h2 className="text-4xl py-2 xl:py-0 xl:text-3xl  ml-4">
+      <h2 className="text-4xl py-2 pb-3 font-medium xl:text-3xl  ml-4">
         Popular professional services
       </h2>
       <Slider {...settings}>

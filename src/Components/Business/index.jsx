@@ -47,7 +47,7 @@ const Business = () => {
                 Upgrade to a curated experience packed with tools and benefits,
                 dedicated to businesses
               </p>
-              <ul className="xl:pr-40">
+              <ul className="mt-4 xl:pr-40">
                 <li className="flex text-lg">
                   <span className="-mt-1 pr-2 text-xl ">
                     <CheckCircleOutlined

@@ -9,15 +9,12 @@ const UserInfo = () => {
   const me = useSelector((state) => state.user.me);
   const [edit, setEdit] = useState(false);
   const [updateDesc, setUpdateDesc] = useState("");
-  const [showUpdate, setShowUpdate] = useState("");
 
   const handleEdit = () => setEdit(!edit);
 
   const handleUpdateDesc = (event) => {
     const inputDesc = event.target.value;
     setUpdateDesc(inputDesc);
-
-    console.log(updateDesc);
   };
 
   const handleSubmitUpdate = useCallback((event) => {
@@ -33,6 +30,7 @@ const UserInfo = () => {
         <div className=" xl:col-start-2 xl:col-span-3 font-sans w-full ">
           <div className="card w-full mx-auto bg-white  shadow-xl hover:shadow pt-10 xl:pt-0">
             <div className="w-44 h-44 mx-auto ">
+              {/* Show user's avatar, if not have show avatar default */}
               {me?.avatar ? (
                 <img className="w-full h-full rounded-full" src={me?.avatar} />
               ) : (

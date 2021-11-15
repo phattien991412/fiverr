@@ -11,9 +11,7 @@ import { signUp } from "../../store/action/auth";
 const Signup = () => {
   const dispatch = useDispatch();
 
-  function onChange(date, dateString) {
-    console.log(date, dateString);
-  }
+  function onChange(date, dateString) {}
 
   const {
     register,
@@ -27,7 +25,7 @@ const Signup = () => {
 
   const onSubmit = (data) => {
     dispatch(signUp(data));
-    console.log(data);
+
     reset();
   };
 

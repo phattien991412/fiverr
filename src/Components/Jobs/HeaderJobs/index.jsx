@@ -3,11 +3,10 @@ import "./style.css";
 import { useHistory, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../../store/action/auth";
-import { Collapse, Menu, Dropdown, Space } from "antd";
-import { UserOutlined, CloseOutlined } from "@ant-design/icons";
+import { Menu, Dropdown, Space } from "antd";
+import { UserOutlined, CloseOutlined, SearchOutlined } from "@ant-design/icons";
 import { fetchTitleJobs } from "../../../store/action/jobs";
 const Header = () => {
-  const { Panel } = Collapse;
   const dispatch = useDispatch();
   const history = useHistory();
   const me = useSelector((state) => state.user.me);
@@ -29,6 +28,11 @@ const Header = () => {
   const [sideBar, setSideBar] = useState(false);
 
   const handleSideBar = () => setSideBar(!sideBar);
+
+  const [showOption, setShowOption] = useState(false);
+  const handleShowOption = () => {
+    setShowOption(!showOption);
+  };
 
   return (
     <header className="xl:p-4 xl:pb-0">
@@ -164,35 +168,48 @@ const Header = () => {
           </NavLink>
 
           {me ? (
-            <Collapse className="z-20 md:col-start-7 md:mt-4" ghost>
-              <Panel
-                className=" w-3/4 "
-                header={
-                  <span className="text-2xl md:pt-0 md:leading-none  md:text-3xl md:text-black lg:text-black ">
-                    <UserOutlined
-                      style={{
-                        paddingLeft: "3.5rem",
-                        paddingTop: 6
-                      }}
-                    />
-                  </span>
-                }
-                key="1"
-              >
-                <NavLink
-                  to="/me"
-                  className="text-white pl-2 font-semibold text-base "
+            <div className="relative inline-block text-center md:col-start-7  lg:mx-auto">
+              <div onClick={handleShowOption} className="text-black pt-1.5">
+                <UserOutlined
+                  style={{
+                    paddingLeft: "3.5rem",
+                    paddingTop: 6,
+                    fontSize: "2rem"
+                  }}
+                />
+              </div>
+              {showOption && (
+                <div
+                  className="origin-top-right absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="menu-button"
+                  tabIndex={-1}
                 >
-                  Profile
-                </NavLink>
-                <button
-                  onClick={handleSignOut}
-                  className="text-white pl-2 py-1 font-semibold text-base "
-                >
-                  Sign out
-                </button>
-              </Panel>
-            </Collapse>
+                  <div className="py-1" role="none">
+                    <NavLink
+                      to="/me"
+                      className="text-gray-700 block text-left px-4 py-2 text-sm font-medium"
+                      role="menuitem"
+                      tabIndex={-1}
+                    >
+                      Profile
+                    </NavLink>
+
+                    <button
+                      onClick={handleSignOut}
+                      type="button"
+                      className="text-gray-700 block w-full text-left px-4 pb-2 text-sm font-medium"
+                      role="menuitem"
+                      tabIndex={-1}
+                      id="menu-item-3"
+                    >
+                      Sign out
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
           ) : (
             <>
               <NavLink
@@ -216,7 +233,7 @@ const Header = () => {
         <NavLink
           to="/"
           aria-label="Back to homepage"
-          className="xl:block hidden md:hidden sm:flex sm:items-center p-2 col-start-2"
+          className="pt-3 xl:block hidden md:hidden sm:flex sm:items-center p-2 col-start-2"
         >
           <svg
             width="89"
@@ -233,7 +250,22 @@ const Header = () => {
           </svg>
         </NavLink>
 
-        <ul className="items-stretch mr-14 hidden space-x-3 xl:flex">
+        <div className="relative w-1/4 -ml-52 mt-1">
+          <SearchOutlined
+            className="text-xl text-black absolute left-1 top-1 z-20 "
+            style={{ color: "#9ca3af" }}
+          />
+          <input
+            className="w-3/4 pl-6 py-2 rounded-tl rounded-bl outline-none border"
+            type="text"
+            placeholder="Find Services"
+          />
+          <button className=" py-2 px-4 border bg-green-500 border-green-500 text-white rounded-tr rounded-br">
+            Search
+          </button>
+        </div>
+
+        <ul className="mb-4 items-stretch mr-14 hidden space-x-3 xl:flex">
           <li className="flex">
             <NavLink
               to="/"
@@ -283,7 +315,7 @@ const Header = () => {
                   Sign In
                 </NavLink>
               </li>
-              <li className="flex pt-2">
+              <li className="flex mt-2">
                 <NavLink
                   to="/signin"
                   className="flex items-center px-6 h-8 -mb-1 bg-transparent  text-green-500 text-base font-semibold border border-green-500  rounded hover:text-white hover:bg-green-500 "

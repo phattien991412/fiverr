@@ -25,8 +25,8 @@ export class JobsService extends baseService {
     return this.get(`api/jobs/`);
   };
   // API 23
-  fetchJobsDetail = (id) => {
-    return this.get(`api/jobs/${id}`);
+  fetchJobsDetail = (_id) => {
+    return this.get(`api/jobs/${_id}`);
   };
 }
 

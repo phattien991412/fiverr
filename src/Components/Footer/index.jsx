@@ -20,6 +20,17 @@ const Footer = () => {
     }
   };
 
+  const backTop = document.getElementById("backTop");
+
+  const handleBackTop = () => {
+    backTop.addEventListener("click", () =>
+      window.scrollTo({
+        top: 50,
+        behavior: "smooth"
+      })
+    );
+  };
+
   return (
     <footer className="xl:container xl:mt-10 p-6 dark:bg-coolGray-800 dark:text-coolGray-100">
       <div className="hidden mx-8 xl:mx-auto xl:grid xl:grid-cols-5 gap-y-8 ">
@@ -182,7 +193,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      {/* Menu footer responsive < 640px */}
+      {/* Menu footer responsive*/}
       <Menu
         className="xl:hidden w-full"
         mode="inline"
@@ -297,7 +308,7 @@ const Footer = () => {
           </Menu.Item>
           <Menu.Item className="text-gray-500 text-base" key="30">
             Fiverr Elevate
-            {/* <span className="text-sm">Exclusive Benefits</span> */}
+           
           </Menu.Item>
         </SubMenu>
 
@@ -449,7 +460,9 @@ const Footer = () => {
                       ></path>
                     </svg>
                   </span>
-                  <span className="ml-2 font-medium text-gray-500">English</span>
+                  <span className="ml-2 font-medium text-gray-500">
+                    English
+                  </span>
                 </button>
               </li>
               <li className="mx-4 pt-1">
@@ -479,9 +492,16 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <BackTop className="hidden xl:block">
-        <UpCircleOutlined className="relative bottom-24 text-5xl font-normal" />
-      </BackTop>
+      
+      <div className="relative bottom-60  hidden xl:block">
+        <div className="grid grid-cols-12 ">
+          <UpCircleOutlined
+            id="backTop"
+            onClick={handleBackTop}
+            className="col-start-12 text-5xl font-normal cursor-pointer"
+          />
+        </div>
+      </div>
     </footer>
   );
 };

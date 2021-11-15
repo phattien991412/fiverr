@@ -38,7 +38,6 @@ const HomeCarousel = (props) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          infinite: true,
           dots: true
         }
       },
@@ -63,7 +62,6 @@ const HomeCarousel = (props) => {
 
   const dispatch = useDispatch();
   const data = useSelector((state) => state.jobs.searchJob);
-  console.log(data)
 
   const [wordEntered, setWordEntered] = useState("");
   const [filteredData, setFilteredData] = useState([]);
@@ -73,7 +71,7 @@ const HomeCarousel = (props) => {
     setWordEntered(searchWord);
 
     const newFilter = data.filter((value) => {
-      return value?.name.toLowerCase().includes(searchWord.toLowerCase());
+      return value?.type?.name.toLowerCase().includes(searchWord.toLowerCase());
     });
 
     if (searchWord === "") {
@@ -141,7 +139,7 @@ const HomeCarousel = (props) => {
 
       <div className="grid grid-cols-2 text-white absolute top-24 left-8 md:left-16 md:pr-8 lg:top-48 lg:left-10  xl:top-36 xl:left-24 -translate-x-1/2 translate-y-1/2">
         <div className="col-span-2 lg:w-2/3 xl:w-full xl:col-span-1">
-          <h2 className="col-span-2  text-white text-4xl pr-8 md:pb-4 lg:text-5xl xl:col-span-1 ">
+          <h2 className="col-span-2  text-white text-4xl pr-8 pb-4 lg:text-5xl xl:col-span-1 ">
             Find the perfect <i className="font-serif">freelance</i> services
             for your business
           </h2>
@@ -164,12 +162,12 @@ const HomeCarousel = (props) => {
             </button>
 
             {filteredData.length !== 0 && (
-              <div className="search col-span-2 overflow-y-auto bg-white z-30 absolute top-10 lg:w-3/4 ">
+              <div className="searchBar col-span-2 overflow-y-auto bg-white z-30 absolute top-10 lg:w-3/4 ">
                 {filteredData?.map((item) => {
                   return (
-                    <NavLink to={`/category/${item?._id}`} key={item._id}>
+                    <NavLink to={`/category/${item?.type?._id}`} key={item._id}>
                       <p className="text-black hover:text-black ml-5">
-                        {item?.name}
+                        {item?.type?.name}
                       </p>
                     </NavLink>
                   );

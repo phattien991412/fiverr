@@ -1,4 +1,3 @@
-import axios from "axios";
 import { actionType } from "./type";
 import { createAction } from "./index";
 import { jobsSerivce } from "../../services/JobsService";
@@ -90,12 +89,12 @@ export const searchJobByName = (callback) => {
   };
 };
 
-export const fetchJobsDetail = (id, callback) => {
+export const fetchJobsDetail = (_id, callback) => {
   return async (dispatch) => {
     dispatch(createAction(actionType.IS_LOADING, true));
 
     try {
-      const res = await jobsSerivce.fetchJobsDetail(id);
+      const res = await jobsSerivce.fetchJobsDetail(_id);
 
       dispatch(createAction(actionType.SET_DETAIL, res.data));
 

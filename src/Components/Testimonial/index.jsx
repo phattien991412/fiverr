@@ -3,7 +3,6 @@ import Slider from "react-slick";
 import { CaretRightOutlined } from "@ant-design/icons";
 import { Modal } from "react-responsive-modal";
 import ReactPlayer from "react-player";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import "./style.css";
 import TestimoialKayKim from "../../assets/video/kaykim-testimonial.mp4";
 import TestimonialCaitlin from "../../assets/video/caitlin-testimonial.mp4";
@@ -11,10 +10,25 @@ import TestimonialTimDan from "../../assets/video/tim-dan-testimonial.mp4";
 import TestimonialBrighid from "../../assets/video/brighid-testimonial.mp4";
 
 const Testimonial = () => {
-  const [open, setOpen] = useState(false);
+  const [openKayKim, setOpenKayKim] = useState(false);
 
-  const onOpenModal = () => setOpen(true);
-  const onCloseModal = () => setOpen(false);
+  const onOpenModalKayKim = () => setOpenKayKim(true);
+  const onCloseModalKayKim = () => setOpenKayKim(false);
+
+  const [openCaitlin, setOpenCaitlin] = useState(false);
+
+  const onOpenModalCaitlin = () => setOpenCaitlin(true);
+  const onCloseModalCaitlin = () => setOpenCaitlin(false);
+
+  const [openTimDan, setOpenTimDan] = useState(false);
+
+  const onOpenModalTimDan = () => setOpenTimDan(true);
+  const onCloseModalTimDan = () => setOpenTimDan(false);
+
+  const [openBrighid, setOpenBrighid] = useState(false);
+
+  const onOpenModalBrighid = () => setOpenBrighid(true);
+  const onCloseModalBrighid = () => setOpenBrighid(false);
 
   function NextArrow(props) {
     const { style } = props;
@@ -75,13 +89,14 @@ const Testimonial = () => {
         <div>
           <div className="flex flex-wrap lg:flex-nowrap">
             <div className="relative w-full xl:w-2/5">
-              <LazyLoadImage
+              <img
+                loading="lazy"
                 className="w-full rounded ml-0 xl:ml-2 "
                 src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173399/testimonial-video-still-rooted.jpg"
                 alt="testimonial"
               />
               <div className="absolute bottom-16 left-36 md:top-40 md:left-80 lg:top-24 lg:left-1/2 xl:top-32 xl:left-60">
-                <button onClick={onOpenModal}>
+                <button onClick={onOpenModalKayKim}>
                   <CaretRightOutlined
                     style={{
                       fontSize: 48,
@@ -93,11 +108,12 @@ const Testimonial = () => {
                     }}
                   />
                 </button>
-                <Modal open={open} onClose={onCloseModal} center>
+                <Modal open={openKayKim} onClose={onCloseModalKayKim} center>
                   <ReactPlayer
                     controls={true}
-                    width="800px"
-                    height="450px"
+                    playing={true}
+                    width="100%"
+                    height="100%"
                     url={TestimoialKayKim}
                   />
                 </Modal>
@@ -111,7 +127,8 @@ const Testimonial = () => {
                 Kay Kim, Co-Founder
                 <br className="xl:hidden" />
                 <span className=" xl:border-l xl:border-gray-400 xl:ml-4 xl:h-9">
-                  <LazyLoadImage
+                  <img
+                    loading="lazy"
                     className="w-1/4 xl:w-1/12 xl:ml-3"
                     src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/rooted-logo-x2.321d79d.png"
                     alt="logo"
@@ -132,13 +149,14 @@ const Testimonial = () => {
         <div>
           <div className="flex flex-wrap lg:flex-nowrap">
             <div className="relative w-full xl:w-2/5">
-              <LazyLoadImage
+              <img
+                loading="lazy"
                 className="w-full rounded xl:ml-2 ml-1 "
                 src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173414/testimonial-video-still-naadam.jpg"
                 alt="testimonial"
               />
               <div className="absolute bottom-16 left-36  md:top-40 md:left-80 lg:top-24 lg:left-1/2 xl:top-32 xl:left-60">
-                <button onClick={onOpenModal}>
+                <button onClick={onOpenModalCaitlin}>
                   <CaretRightOutlined
                     style={{
                       fontSize: 48,
@@ -150,11 +168,12 @@ const Testimonial = () => {
                     }}
                   />
                 </button>
-                <Modal open={open} onClose={onCloseModal} center>
+                <Modal open={openCaitlin} onClose={onCloseModalCaitlin} center>
                   <ReactPlayer
                     controls={true}
-                    width="800px"
-                    height="450px"
+                    playing={true}
+                    width="100%"
+                    height="100%"
                     url={TestimonialCaitlin}
                   />
                 </Modal>
@@ -167,7 +186,8 @@ const Testimonial = () => {
               >
                 Caitlin Tormey, Chief Commercial Officer
                 <span className="xl:border-l xl:border-gray-400 xl:ml-4 xl:h-9">
-                  <LazyLoadImage
+                  <img
+                    loading="lazy"
                     className="w-24 xl:ml-3"
                     src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/naadam-logo-x2.0a3b198.png"
                     alt="logo"
@@ -187,13 +207,14 @@ const Testimonial = () => {
         <div>
           <div className="flex flex-wrap lg:flex-nowrap">
             <div className="relative w-full xl:w-2/5">
-              <LazyLoadImage
+              <img
+                loading="lazy"
                 className="w-full rounded xl:ml-2 -pl-1  "
                 src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173395/testimonial-video-still-haerfest.jpg"
                 alt="testimonial"
               />
               <div className="absolute bottom-16 left-36  md:top-40 md:left-80 lg:top-24 lg:left-1/2 xl:top-32 xl:left-60">
-                <button onClick={onOpenModal}>
+                <button onClick={onOpenModalTimDan}>
                   <CaretRightOutlined
                     style={{
                       fontSize: 48,
@@ -205,11 +226,12 @@ const Testimonial = () => {
                     }}
                   />
                 </button>
-                <Modal open={open} onClose={onCloseModal} center>
+                <Modal open={openTimDan} onClose={onCloseModalTimDan} center>
                   <ReactPlayer
                     controls={true}
-                    width="800px"
-                    height="450px"
+                    playing={true}
+                    width="100%"
+                    height="100%"
                     url={TestimonialTimDan}
                   />
                 </Modal>
@@ -222,7 +244,8 @@ const Testimonial = () => {
               >
                 Tim and Dan Joo, Co-Founders
                 <span className="xl:border-l xl:border-gray-400 xl:ml-4 xl:h-9">
-                  <LazyLoadImage
+                  <img
+                    loading="lazy"
                     className="w-36 xl:ml-3"
                     src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/haerfest-logo-x2.03fa5c5.png"
                     alt="logo"
@@ -241,13 +264,14 @@ const Testimonial = () => {
         <div>
           <div className="flex flex-wrap lg:flex-nowrap">
             <div className="relative w-full xl:w-2/5">
-              <LazyLoadImage
+              <img
+                loading="lazy"
                 className="w-full rounded xl:ml-2 ml-0 "
                 src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_560,dpr_1.0/v1/attachments/generic_asset/asset/42a6fd208670a0361b38bd72b47b9317-1599519173396/testimonial-video-still-lavender.jpg"
                 alt="testimonial"
               />
               <div className="absolute bottom-16 left-36  md:top-40 md:left-80 lg:top-24 lg:left-1/2 xl:top-32 xl:left-60">
-                <button onClick={onOpenModal}>
+                <button onClick={onOpenModalBrighid}>
                   <CaretRightOutlined
                     style={{
                       fontSize: 48,
@@ -259,11 +283,12 @@ const Testimonial = () => {
                     }}
                   />
                 </button>
-                <Modal open={open} onClose={onCloseModal} center>
+                <Modal open={openBrighid} onClose={onCloseModalBrighid} center>
                   <ReactPlayer
                     controls={true}
-                    width="800px"
-                    height="450px"
+                    playing={true}
+                    width="100%"
+                    height="100%"
                     url={TestimonialBrighid}
                   />
                 </Modal>
@@ -277,7 +302,8 @@ const Testimonial = () => {
                 Brighid Gannon (DNP, PMHNP-BC), Co-Founder
                 <br className="xl:hidden" />
                 <span className="xl:border-l xl:border-gray-400 xl:ml-4 xl:h-9">
-                  <LazyLoadImage
+                  <img
+                    loading="lazy"
                     className="w-36 xl:ml-3"
                     src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/lavender-logo-x2.89c5e2e.png"
                     alt="logo"

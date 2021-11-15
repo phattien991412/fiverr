@@ -6,7 +6,6 @@ import { authSerivce } from "../../services/AuthService";
 import { history } from "../../App";
 import swal from "sweetalert";
 import Swal from "sweetalert2";
-import { userSerivce } from "../../services/UserService";
 
 export const SignIn = (data, callback) => {
   return async (dispatch) => {
@@ -30,7 +29,6 @@ export const SignIn = (data, callback) => {
         history.goBack();
       }, 1500);
 
-      console.log("signin", res);
       if (callback) {
         callback();
       }
@@ -40,7 +38,6 @@ export const SignIn = (data, callback) => {
         title: "Oops...",
         text: "Email or password is not correct"
       });
-      console.log(err);
     }
   };
 };
@@ -75,15 +72,12 @@ export const signUp = (data, callback) => {
       setTimeout(() => {
         history.goBack();
       }, 1200);
-      console.log("signup", res);
+
       if (callback) {
         callback();
       }
     } catch (err) {
       swal("Sever errors :(", "Please try again later");
-      console.log(err);
     }
   };
 };
-
-
