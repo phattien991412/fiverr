@@ -81,7 +81,7 @@ const Header = () => {
           {header ? (
             <p
               onClick={handleSideBar}
-              className="pl-6 pt-5 col-span-1 md:col-start-1 md:pl-16 md:pt-7 lg:pt-5"
+              className="pl-6 pt-5 col-span-1 md:col-start-1 md:pl-16 md:pt-7 lg:pt-5 lg:pl-6"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +101,7 @@ const Header = () => {
           ) : (
             <p
               onClick={handleSideBar}
-              className="pl-6 pt-5 col-span-1 md:col-start-1 md:pl-16 md:pt-7 lg:pt-5"
+              className="pl-6 pt-5 col-span-1 md:col-start-1 md:pl-16 md:pt-7 lg:pt-5 lg:pl-6"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -213,7 +213,7 @@ const Header = () => {
             <NavLink
               to="/"
               aria-label="Back to homepage"
-              className="pt-4 pl-6 hidden lg:block md:col-start-2 md:pl-1"
+              className="pt-4 pl-6 hidden lg:block md:col-start-2 md:pl-1 lg:-ml-16"
             >
               <svg
                 width="89"
@@ -233,7 +233,7 @@ const Header = () => {
             <NavLink
               to="/"
               aria-label="Back to homepage"
-              className="pt-4 pl-6 hidden lg:block md:col-start-2 md:pl-1"
+              className="pt-4 pl-6 hidden lg:block md:col-start-2 md:pl-1 lg:-ml-16"
             >
               <svg
                 width="89"

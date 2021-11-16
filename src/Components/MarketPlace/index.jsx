@@ -102,7 +102,7 @@ const MarketPlace = () => {
             </a>
           </li>
 
-          <li className="mb-14 w-1/2 md:w-1/3 lg:mt-3 xl:mt-0  lg:w-1/4 xl:w-1/5">
+          <li className="mb-14 w-1/2 md:w-1/3 md:mt-5 lg:mt-3 xl:mt-0  lg:w-1/4 xl:w-1/5">
             <a href="#">
               <img
                 loading="lazy"
