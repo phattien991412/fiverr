@@ -1,5 +1,4 @@
-import { Carousel } from "antd";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "./style.css";
 import { SearchOutlined } from "@ant-design/icons";
@@ -71,7 +70,9 @@ const HomeCarousel = (props) => {
     setWordEntered(searchWord);
 
     const newFilter = data.filter((value) => {
-      return value?.type?.name.toLowerCase().includes(searchWord.toLowerCase());
+      return value.subType?.name
+        .toLowerCase()
+        .includes(searchWord.toLowerCase());
     });
 
     if (searchWord === "") {
@@ -165,9 +166,9 @@ const HomeCarousel = (props) => {
               <div className="searchBar col-span-2 overflow-y-auto bg-white z-30 absolute top-10 lg:w-3/4 ">
                 {filteredData?.map((item) => {
                   return (
-                    <NavLink to={`/category/${item?.type?._id}`} key={item._id}>
+                    <NavLink to={`/category/${item.type?._id}`} key={item._id}>
                       <p className="text-black hover:text-black ml-5">
-                        {item?.type?.name}
+                        {item.subType.name}
                       </p>
                     </NavLink>
                   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { BackTop } from "antd";
 import { UpCircleOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
@@ -25,7 +25,7 @@ const Footer = () => {
   const handleBackTop = () => {
     backTop.addEventListener("click", () =>
       window.scrollTo({
-        top: 50,
+        top: 0,
         behavior: "smooth"
       })
     );
@@ -148,14 +148,14 @@ const Footer = () => {
               </li>
               <li className="mb-4">
                 <a href="#">
-                  Fiverr Elevate <p>Exclusive Benefits</p>
+                  Fiverr Elevate <p className="w-2/5">Exclusive Benefits</p>
                 </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className=" space-y-4">
+        <div className=" z-30 space-y-4">
           <h2 className="font-semibold text-base">More From Fiverr </h2>
           <div className="text-list dark:text-coolGray-400">
             <ul>
@@ -178,13 +178,14 @@ const Footer = () => {
                 <a href="#">Get Inspired</a>
               </li>
               <li className="mb-4">
-                <a href="#">ClearVoice</a>
+                <a href="#">ClearVoice <p className="w-1/2" style={{width: "45%"}}>Content Marketing</p></a>
               </li>
               <li className="mb-4">
-                <a href="#">AND CO</a>
+                <a href="#">Fiverr Workspace <p className="w-2/5">Invoice Software</p></a>
               </li>
-              <li className="mb-4">
-                <a href="#">Learn</a>
+
+              <li className="mb-4 w-2/5">
+                <a href="#">Learn <p>Online Courses</p></a>
               </li>
               <li className="mb-4">
                 <a href="#">Working Not Working</a>
@@ -308,7 +309,6 @@ const Footer = () => {
           </Menu.Item>
           <Menu.Item className="text-gray-500 text-base" key="30">
             Fiverr Elevate
-           
           </Menu.Item>
         </SubMenu>
 
@@ -492,8 +492,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      
-      <div className="relative bottom-60  hidden xl:block">
+
+      <div className="relative bottom-36 hidden xl:block">
         <div className="grid grid-cols-12 ">
           <UpCircleOutlined
             id="backTop"

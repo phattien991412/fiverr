@@ -31,6 +31,10 @@ function App() {
 
   const isLoading = useSelector((state) => state.loading.isLoading)
 
+  useEffect(() => {
+    window.scrollTo(0,0)
+  }, [])
+
   return (
       <BrowserRouter>
     {isLoading && <Loading/>}

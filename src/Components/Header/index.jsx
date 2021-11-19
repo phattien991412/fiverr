@@ -38,7 +38,7 @@ const Header = () => {
   };
 
   const addLayoutHeader = () => {
-    if (window.scrollY >= 300) {
+    if (window.scrollY >= 150) {
       setAddHeader(true);
     } else {
       setAddHeader(false);

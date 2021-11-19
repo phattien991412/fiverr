@@ -9,10 +9,11 @@ import ItemJobs from "../ItemJobs";
 const ListJobs = () => {
   const dispatch = useDispatch();
   const listJobs = useSelector((state) => state.jobs.listJobs);
+  console.log({ listJobs });
 
   const count = 12;
   const [pageSize, setPageSize] = useState({
-    data: listJobs,
+    data: [],
     totalPage: 0,
     current: 1,
     minIndex: 0,
@@ -20,17 +21,14 @@ const ListJobs = () => {
   });
 
   useEffect(() => {
-    dispatch(
-      fetchListJobs((data) => {
-        setPageSize({
-          data,
-          totalPage: data.length / count,
-          current: 1,
-          minIndex: 0,
-          maxIndex: count
-        });
-      })
-    );
+    dispatch(fetchListJobs());
+    setPageSize({
+      listJobs,
+      totalPage: listJobs.length / count,
+      current: 1,
+      minIndex: 0,
+      maxIndex: count
+    });
   }, [dispatch, setPageSize]);
 
   const handleChange = useCallback(
@@ -39,6 +37,11 @@ const ListJobs = () => {
         current: page,
         minIndex: (page - 1) * count,
         maxIndex: page * count
+      });
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
       });
     },
     [setPageSize]
@@ -51,7 +54,10 @@ const ListJobs = () => {
           return (
             index >= pageSize.minIndex &&
             index < pageSize.maxIndex && (
-              <div key={item._id} className="col-span-1 mb-4 md:mr-4 lg:mr-6 xl:mb-8">
+              <div
+                key={item._id}
+                className="col-span-1 mb-4 md:mr-4 lg:mr-6 xl:mb-8"
+              >
                 <ItemJobs item={item} />
               </div>
             )

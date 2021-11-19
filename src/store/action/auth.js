@@ -4,7 +4,6 @@ import { createAction } from "./index";
 import { TOKEN } from "../../util/config";
 import { authSerivce } from "../../services/AuthService";
 import { history } from "../../App";
-import swal from "sweetalert";
 import Swal from "sweetalert2";
 
 export const SignIn = (data, callback) => {
@@ -56,7 +55,7 @@ export const signOut = (callback) => {
 export const signUp = (data, callback) => {
   return async (dispatch) => {
     try {
-      const res = await authSerivce.signUp(data);
+      await authSerivce.signUp(data);
       setTimeout(() => {
         dispatch(createAction(actionType.SET_SIGN_UP, true));
       }, 400);
@@ -77,7 +76,10 @@ export const signUp = (data, callback) => {
         callback();
       }
     } catch (err) {
-      swal("Sever errors :(", "Please try again later");
+      Swal.fire({
+        icon: "error",
+        title: "Please check your information again!"
+      });
     }
   };
 };

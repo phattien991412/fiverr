@@ -4,17 +4,22 @@ import HeaderJobs from "../../Components/Jobs/HeaderJobs";
 import { useSelector, useDispatch } from "react-redux";
 
 import { NavLink } from "react-router-dom";
-import { fetchSubTypeJobs } from "../../store/action/jobs";
+import { fetchListTypeJobs, fetchSubTypeJobs } from "../../store/action/jobs";
 
 const Category = (props) => {
   const subType = useSelector((state) => state.jobs.subTypeJobs);
-
+  // const listTypeJobs = useSelector((state) => state.jobs.typeJobs);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const { _id } = props.match.params;
     dispatch(fetchSubTypeJobs(_id));
   }, [dispatch]);
+
+  // useEffect(() => {
+  //   const { _id } = props.match.params;
+  //   dispatch(fetchListTypeJobs(_id));
+  // }, [dispatch]);
 
   return (
     <>
@@ -60,7 +65,7 @@ const Category = (props) => {
                       <img
                         className="w-full h-3/5 pr-4 rounded"
                         src="https://picsum.photos/200"
-                        alt=""
+                        alt="jobs"
                       />
                       <p className="text-base font-medium text-black hover:text-black mb-0">
                         {item.name}

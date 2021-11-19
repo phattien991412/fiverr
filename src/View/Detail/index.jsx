@@ -7,6 +7,7 @@ import { StarFilled } from "@ant-design/icons";
 import { Menu } from "antd";
 import "./style.css";
 import { fetchJobsDetail } from "../../store/action/jobs";
+import defaultImage from "../../assets/img/default-image.jpg"
 
 const Detail = (props) => {
   const { SubMenu } = Menu;
@@ -77,10 +78,10 @@ const Detail = (props) => {
                       <Rate
                         className="z-0"
                         style={{ paddingBottom: 4, fontSize: 16 }}
-                        value={5}
+                        value={detail.rating}
                         disabled
                       />
-                      (24)
+                      ({detail.rating})
                     </span>
                     <p className="pl-2 my-auto text-gray-500 font-medium xl:pt-0.5 ">
                       4 Orders in Queue
@@ -91,7 +92,8 @@ const Detail = (props) => {
               <hr />
             </div>
 
-            <img className="w-full" src={detail.image} alt="jobs" />
+            {/* Show image default when job don't have image */}
+            {detail.image ? <img className="w-full" src={detail.image} alt="jobs" /> : <img className="w-full" src={defaultImage} alt="jobs" />}
           </div>
           {/*  */}
           <div className="w-5/6 z-10  ml-8 md:pt-10 md:w-11/12 lg:col-span-2 lg:ml-0 lg:w-11/12 lg:pt-0 xl:w-4/5 ">

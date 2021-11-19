@@ -4,7 +4,7 @@ const initialState = {
   listJobs: [],
   titleJobs: [],
   subTypeJobs: [],
-  typeJobs: [],
+  // typeJobs: [],
   searchJob: [],
   detail: []
 };
@@ -23,9 +23,9 @@ export default (state = initialState, { type, payload }) => {
       state.subTypeJobs = payload;
       return { ...state };
 
-    case actionType.SET_LIST_TYPE_JOBS:
-      state.typeJobs = payload;
-      return { ...state };
+    // case actionType.SET_LIST_TYPE_JOBS:
+    //   state.typeJobs = payload;
+    //   return { ...state };
 
     case actionType.SEARCH_JOBS:
       state.searchJob = payload;

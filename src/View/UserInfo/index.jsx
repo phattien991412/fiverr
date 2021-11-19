@@ -2,11 +2,14 @@ import React, { useCallback, useState } from "react";
 import HeaderJobs from "../../Components/Jobs/HeaderJobs";
 import Footer from "../../Components/Footer";
 import { useSelector } from "react-redux";
+import "react-responsive-modal/styles.css";
 import { PlusOutlined, GooglePlusSquareFilled } from "@ant-design/icons";
+import "react-datepicker/dist/react-datepicker.css";
 import userImg from "../../assets/img/user.png";
 
 const UserInfo = () => {
   const me = useSelector((state) => state.user.me);
+
   const [edit, setEdit] = useState(false);
   const [updateDesc, setUpdateDesc] = useState("");
 
@@ -18,9 +21,8 @@ const UserInfo = () => {
   };
 
   const handleSubmitUpdate = useCallback((event) => {
-    (event) => {
-      event.preventDefault();
-    };
+    event.preventDefault();
+    
   });
 
   return (
@@ -38,9 +40,8 @@ const UserInfo = () => {
               )}
             </div>
 
-            <div className="text-center mt-2 text-xl font-medium">
-              {me?.name}
-            </div>
+            <div className="text-center text-xl font-medium">{me?.name}</div>
+
             <div className="text-center mt-2 font-light text-sm">
               {me?.email}
             </div>

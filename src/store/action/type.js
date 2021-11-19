@@ -3,6 +3,7 @@ export const actionType = {
   SET_SIGN_IN: "SET_SIGN_IN",
   SET_SIGN_UP: "SET_SIGN_UP",
   SET_ME: "SET_ME",
+  SET_USER_INFO: "SET_USER_INFO",
 
   // Jobs
   SET_LIST_JOBS: "SET_LIST_JOBS",
@@ -12,7 +13,7 @@ export const actionType = {
   SEARCH_JOBS: 'SEARCH_JOBS',
   SET_DETAIL: 'SET_DETAIL',
 
-  SET_TEST: "SET_TEST",
+  // Other
   IS_LOADING: "IS_LOADING",
   SET_PAGINATION: "SET_PAGINATION"
 };
